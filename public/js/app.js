@@ -49795,7 +49795,10 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //live search for selects - npm-modules
+
+
+__webpack_require__(/*! ../../node_modules/bootstrap-select/dist/js/bootstrap-select.min */ "./node_modules/bootstrap-select/dist/js/bootstrap-select.min.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
@@ -49932,14 +49935,35 @@ $('#addToOrder').on('click', function (event) {
 
   enableAmount(row);
   rowIdx++;
-}); //live search for selects when page loaded
-
-__webpack_require__(/*! ../../node_modules/bootstrap-select/dist/js/bootstrap-select.min */ "./node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"); // npm-modules
-
+}); //live search for selects
 
 $(function () {
   $('select').filter(":visible").selectpicker();
-});
+}); //time period button - orders -> add/remove selected class
+// $('#orders-today').on('click', function(e) {
+//     $(this).addClass('active');
+//     $('#orders-week').removeClass('active');
+//     $('#orders-month').removeClass('active');
+//     $('#orders-all').removeClass('active');
+// });
+// $('#orders-week').on('click', function(e) {
+//     $('#orders-today').removeClass('active');
+//     $(this).addClass('active');
+//     $('#orders-month').removeClass('active');
+//     $('#orders-all').removeClass('active');
+// });
+// $('#orders-month').on('click', function(e) {
+//     $('#orders-today').removeClass('active');
+//     $('#orders-week').removeClass('active');
+//     $(this).addClass('active');
+//     $('#orders-all').removeClass('active');
+// });
+// $('#orders-all').on('click', function(e) {
+//     $('#orders-today').removeClass('active');
+//     $('#orders-week').removeClass('active');
+//     $('#orders-month').removeClass('active');
+//     $(this).addClass('active');
+// });
 
 /***/ }),
 

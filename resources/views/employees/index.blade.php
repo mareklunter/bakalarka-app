@@ -3,15 +3,15 @@
 
 @section('content')
     
-    <h1>employees page</h1>
+    <h1>Zamestnanci</h1>
     <table class="table table-striped border-bottom">
         <thead class="bg-dark text-white">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Celé meno</th>
-            <th scope="col">Plat</th>
+            <th scope="col">@sortablelink('id', 'Id')</th>
+            <th scope="col">@sortablelink('lastName', 'Celé meno')</th>
+            <th scope="col">@sortablelink('salary', 'Plat')</th>
             <th scope="col">Pozícia</th>
-            <th scope="col">Pracuje od</th>
+            <th scope="col">@sortablelink('created_at', 'Pracuje od')</th>
             <th scope="col"><i class="fas fa-info"></i></th>
           </tr>
         </thead>
@@ -43,7 +43,7 @@
       </table>
 
       <div class="d-flex justify-content-end">
-        {{ $employees->links() }}
+        {!! $employees->appends(\Request::except('page'))->render() !!}
       </div>
 
       <a href="{{ route('employees.shifts') }}" class="btn btn-primary">Smeny</a>

@@ -3,6 +3,6 @@
 
 @section('content')
     
-    <h1>map page</h1>
+    <h1>Mapa</h1>
     
 @endsection

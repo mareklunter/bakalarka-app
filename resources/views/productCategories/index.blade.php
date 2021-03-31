@@ -7,7 +7,7 @@
     <div class="text-left">
       <a href="{{route('products.index')}}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Späť</a>
     </div>
-    <h1>Product Categories</h1>
+    <h1>Kategórie produktov</h1>
 
     <table class="table table-striped table-sm border-bottom">
         <thead>

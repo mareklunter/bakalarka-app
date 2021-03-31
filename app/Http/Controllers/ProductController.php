@@ -12,7 +12,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = auth()->user()->products()->paginate(10);
+        $products = auth()->user()->products()->sortable()->paginate(10);
 
         return view('products.index', [
             'products' => $products

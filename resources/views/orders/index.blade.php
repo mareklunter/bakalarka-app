@@ -1,18 +1,18 @@
 @extends('layouts.master')
 
 
-@section('content')
+@section('content') 
     
     <a href="" class="btn btn-dark float-right">Režim kuchyne</a>
-    <h1>order page</h1>
+    <h1>Objednávky</h1>
     <table class="table table-striped table-sm border-bottom">
         <thead>
           <tr class="bg-dark text-white">
-            <th scope="col">ID</th>
-            <th scope="col">Vytvorená</th>
+            <th scope="col">@sortablelink('id', 'Id')</th>
+            <th scope="col">@sortablelink('created_at', 'Vytvorené')</th>
             <th scope="col">Obsahuje produktov</th>
-            <th scope="col">Zaplatiť</th>
-            <th scope="col">Stav <a href="{{route('orders.sortStatus')}}"><i class="fas fa-sort"></i></a></th>
+            <th scope="col">@sortablelink('price', 'Cena')</th>
+            <th scope="col">@sortablelink('paid', 'Stav')</th>
             <th scope="col"><i class="fas fa-info"></i></th>
         </tr>
         </thead> 
@@ -58,8 +58,20 @@
         </tbody>
       </table>
 
-      <div class="d-flex justify-content-end">
-        {{ $orders->links() }}
+      <div class="d-flex justify-content-between">
+        {{-- Time period buttons --}}
+        <div class="btn-group">
+          <a href="{{ route('orders.index') }}" class="btn btn-primary {{ (request()->is('orders')) ? 'active' : '' }}" id="orders-today">Dnes</a>
+          <a href="{{ route('orders.index', 'week') }}" class="btn btn-primary {{ (request()->is('orders/week')) ? 'active' : '' }}" id="orders-week">Týždeň</a>
+          <a href="{{ route('orders.index', 'month') }}" class="btn btn-primary {{ (request()->is('orders/month')) ? 'active' : '' }}" id="orders-month">Mesiac</a>
+          <a href="{{ route('orders.index', 'all') }}" class="btn btn-primary {{ (request()->is('orders/all')) ? 'active' : '' }}" id="orders-all">Celé obdobie</a>
+        </div>
+
+
+        {{-- Paginations-kyslik --}}
+        <div>
+          {!! $orders->appends(\Request::except('page'))->render() !!}
+        </div>
       </div>
 
       <a href="{{ route('orders.create') }}" class="btn btn-info">Nová objednávka</a>

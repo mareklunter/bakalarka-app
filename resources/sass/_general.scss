@@ -10,13 +10,17 @@ html{
 body {
     background: $body-bg;
     font-size: 100%;
-    //font-family: 'Montserrat', sans-serif;
     text-align: center;
 
 }
 
+a {
+    color: white;
+}
+
 a:hover{
-    text-decoration: none;
+    color: white;
+    // text-decoration: none;
 }
 
 ul{

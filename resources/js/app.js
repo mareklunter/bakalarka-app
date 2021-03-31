@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 
-//live search for selects when page loaded - npm-modules
+//live search for selects - npm-modules
 require('../../node_modules/bootstrap-select/dist/js/bootstrap-select.min');
 
 window.Vue = require('vue');
@@ -209,8 +209,41 @@ $('#addToOrder').on('click', function(event) {
 });
 
 
-
+//live search for selects
 $(function () {
     $('select').filter(":visible").selectpicker();
 });
 
+
+
+//time period button - orders -> add/remove selected class
+// $('#orders-today').on('click', function(e) {
+//     $(this).addClass('active');
+//     $('#orders-week').removeClass('active');
+//     $('#orders-month').removeClass('active');
+//     $('#orders-all').removeClass('active');
+// });
+
+// $('#orders-week').on('click', function(e) {
+
+//     $('#orders-today').removeClass('active');
+//     $(this).addClass('active');
+//     $('#orders-month').removeClass('active');
+//     $('#orders-all').removeClass('active');
+// });
+
+// $('#orders-month').on('click', function(e) {
+
+//     $('#orders-today').removeClass('active');
+//     $('#orders-week').removeClass('active');
+//     $(this).addClass('active');
+//     $('#orders-all').removeClass('active');
+// });
+
+// $('#orders-all').on('click', function(e) {
+
+//     $('#orders-today').removeClass('active');
+//     $('#orders-week').removeClass('active');
+//     $('#orders-month').removeClass('active');
+//     $(this).addClass('active');
+// });

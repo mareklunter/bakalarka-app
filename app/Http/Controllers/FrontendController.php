@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class FrontendController extends Controller
 {
@@ -14,7 +15,12 @@ class FrontendController extends Controller
     }
 
     public function dashboard() {
-        return view('frontend.dashboard');
+        $oneHourLimit = Carbon::now()->subHour();
+        $orderLimitCount = auth()->user()->orders()->where('created_at', '<' , $oneHourLimit)->count();
+
+        return view('frontend.dashboard', [
+            'orderLimitCount' => $orderLimitCount
+        ]);
     }
 
     public function map() {

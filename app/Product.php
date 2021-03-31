@@ -4,10 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kyslik\ColumnSortable\Sortable;
 
 class Product extends Model
 {
     use SoftDeletes;
+    use Sortable;
+
+    public $sortable = ['id','name','price'];
 
     /**
     * The attributes that are mass assignable.

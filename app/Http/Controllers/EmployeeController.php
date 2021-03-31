@@ -14,7 +14,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = auth()->user()->employees()->paginate(10);
+        $employees = auth()->user()->employees()->sortable()->paginate(10);
 
         return view("employees.index", [
             'employees' => $employees

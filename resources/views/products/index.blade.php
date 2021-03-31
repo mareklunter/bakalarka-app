@@ -3,13 +3,13 @@
 
 @section('content')
     
-    <h1>menu page</h1>
+    <h1>Menu</h1>
     <table class="table table-striped table-sm border-bottom">
         <thead>
           <tr class="bg-dark text-white">
-            <th scope="col">ID</th>
-            <th scope="col">Názov</th>
-            <th scope="col">Cena</th>
+            <th scope="col">@sortablelink('id', 'Id')</th>
+            <th scope="col">@sortablelink('name', 'Názov')</th>
+            <th scope="col">@sortablelink('price', 'Cena')</th>
             <th scope="col">Kategória</th>
             <th scope="col"><i class="fas fa-info"></i></th>
         </tr>
@@ -38,7 +38,7 @@
       </table>
 
       <div class="d-flex justify-content-end">
-        {{ $products->links() }}
+        {!! $products->appends(\Request::except('page'))->render() !!}
       </div>
 
       <a href="{{ route('products.create') }}" class="btn btn-primary">Nový produkt</a>

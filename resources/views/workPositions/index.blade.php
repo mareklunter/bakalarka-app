@@ -7,7 +7,7 @@
     <div class="text-left">
       <a href="{{route('employees.index')}}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Späť</a>
     </div>
-    <h1>Work Positions</h1>
+    <h1>Pracovné pozície</h1>
     <table class="table table-striped table-sm border-bottom">
         <thead>
           <tr class="bg-dark text-white">

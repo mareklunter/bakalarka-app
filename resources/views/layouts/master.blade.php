@@ -39,24 +39,24 @@
             <a href="#top" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span id="collapse-icon" class="fa fa-2x mr-3"></span>
-                    <span id="collapse-text" class="menu-collapsed">Collapse</span>
+                    <span id="collapse-text" class="menu-collapsed">Skryť</span>
                 </div>
             </a>
             <!-- Separator with title -->
             <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-                <small>MAIN MENU</small>
+                <small>HLAVNÁ NAVIGÁCIA</small>
             </li>
 
             <!-- /END Separator -->
             <a href="{{ route('dashboard') }}" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-tasks fa-fw mr-3"></span>
+                    <span class="fa fa-list-alt mr-3"></span>
                     <span class="menu-collapsed">Dashboard</span>
                 </div>
             </a>
             <a href="{{ route('map') }}" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-tasks fa-fw mr-3"></span>
+                    <span class="fas fa-location-arrow mr-3"></span>
                     <span class="menu-collapsed">Mapa</span>
                 </div>
             </a>
@@ -68,19 +68,19 @@
             </a>
             <a href="{{ route('sales') }}" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-envelope-o fa-fw mr-3"></span>
-                    <span class="menu-collapsed">Tržby <span class="badge badge-pill badge-primary ml-2">5</span></span>
+                    <span class="fas fa-chart-line mr-3"></span>
+                    <span class="menu-collapsed">Štatistiky</span>
                 </div>
             </a>
             <a href="{{ route('products.index') }}" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-question fa-fw mr-3"></span>
+                    <span class="fas fa-hamburger mr-3"></span>
                     <span class="menu-collapsed">Ponuka</span>
                 </div>
             </a>
             <a href="{{ route('employees.index') }}" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-question fa-fw mr-3"></span>
+                    <span class="fas fa-users mr-3"></span>
                     <span class="menu-collapsed">Zamestnanci</span>
                 </div>
             </a>

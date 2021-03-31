@@ -6,24 +6,33 @@ use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class OrderController extends Controller 
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $timePeriod = 'today')
     {
-        $orders = auth()->user()->orders()->paginate(10);
-
-        if ( session('orders') ) {
-            $orders = session('orders');
-            // $orders = auth()->user()->orders()->orderBy('paid', $sortKey)->paginate(10);
+        switch ($timePeriod) {
+            case 'today':
+                $timePeriod = Carbon::today();
+                break;
+            case 'week':
+                $timePeriod = Carbon::today()->subDays(7);
+                break;
+            case 'month':
+                $timePeriod = Carbon::today()->subMonth();
+                break;
+            case 'all':
+                $timePeriod = '0000-00-00';
+                break;
         }
 
-        return view('orders.index', [
-            'orders' => $orders
-        ]);
+        $orders = auth()->user()->orders()->where('created_at', '>' , $timePeriod)->sortable()->paginate(10);
+
+        return view('orders.index', compact('orders'));
     }
 
     /**

@@ -28,8 +28,12 @@ body {
   text-align: center;
 }
 
+a {
+  color: white;
+}
+
 a:hover {
-  text-decoration: none;
+  color: white;
 }
 
 ul {

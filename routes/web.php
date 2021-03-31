@@ -18,8 +18,9 @@ Auth::routes();
 
 //TODO - dopln only - metody
 Route::resource('orders', 'OrderController')->only([ 
-    'index', 'create', 'store', 'edit', 'update', 'destroy'
-]);;
+    'create', 'store', 'edit', 'update', 'destroy'
+]);
+Route::get('/orders/{timePeriod?}', 'OrderController@index')->name('orders.index');
 Route::get('orders/{order}/pay', 'OrderController@pay')->name('orders.pay');
 Route::get('/orders/sortStatus', 'OrderController@sortStatus')->name('orders.sortStatus');
 Route::resource('productCategories', 'ProductCategoryController');
