@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 7.30.2.
+ * Generated for Laravel 7.30.3.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -10042,6 +10042,17 @@
         {
                         return \Illuminate\Http\Request::hasValidSignature($absolute);
         }
+                    /**
+         * 
+         *
+         * @see \Kyslik\ColumnSortable\ColumnSortableServiceProvider::boot()
+         * @param array $keys
+         * @static 
+         */ 
+        public static function allFilled($keys)
+        {
+                        return \Illuminate\Http\Request::allFilled($keys);
+        }
          
     }
             /**
@@ -14415,6 +14426,17 @@
         public static function hasValidSignature($absolute = true)
         {
                         return \Illuminate\Http\Request::hasValidSignature($absolute);
+        }
+                    /**
+         * 
+         *
+         * @see \Kyslik\ColumnSortable\ColumnSortableServiceProvider::boot()
+         * @param array $keys
+         * @static 
+         */ 
+        public static function allFilled($keys)
+        {
+                        return \Illuminate\Http\Request::allFilled($keys);
         }
          
     }

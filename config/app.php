@@ -163,7 +163,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
-        ConsoleTVs\Charts\ChartsServiceProvider::class,
         
         /*
          * Package Service Providers...

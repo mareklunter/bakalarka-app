@@ -5,6 +5,9 @@
     
     <a href="" class="btn btn-dark float-right">Režim kuchyne</a>
     <h1>Objednávky</h1>
+
+   
+
     <table class="table table-striped table-sm border-bottom">
         <thead>
           <tr class="bg-dark text-white">
@@ -18,6 +21,14 @@
         </thead> 
         
         <tbody>
+            @if ( $orders->isEmpty() )
+            <tr>
+              <td colspan="6">
+                Zatiaľ neboli vykonané žiadne objednávky.
+              </td>
+            </tr>
+            @endif
+
             @foreach ($orders as $order) 
                 <tr>
                     <th scope="row"> {{ $order->id }} </th>
@@ -61,12 +72,11 @@
       <div class="d-flex justify-content-between">
         {{-- Time period buttons --}}
         <div class="btn-group">
-          <a href="{{ route('orders.index') }}" class="btn btn-primary {{ (request()->is('orders')) ? 'active' : '' }}" id="orders-today">Dnes</a>
-          <a href="{{ route('orders.index', 'week') }}" class="btn btn-primary {{ (request()->is('orders/week')) ? 'active' : '' }}" id="orders-week">Týždeň</a>
-          <a href="{{ route('orders.index', 'month') }}" class="btn btn-primary {{ (request()->is('orders/month')) ? 'active' : '' }}" id="orders-month">Mesiac</a>
-          <a href="{{ route('orders.index', 'all') }}" class="btn btn-primary {{ (request()->is('orders/all')) ? 'active' : '' }}" id="orders-all">Celé obdobie</a>
+          <a href="{{ route('orders.index') }}" class="btn btn-primary {{ (request()->is('orders')) ? 'active' : '' }}">Dnes</a>
+          <a href="{{ route('orders.index', 'week') }}" class="btn btn-primary {{ (request()->is('orders/week')) ? 'active' : '' }}">Týždeň</a>
+          <a href="{{ route('orders.index', 'month') }}" class="btn btn-primary {{ (request()->is('orders/month')) ? 'active' : '' }}">Mesiac</a>
+          <a href="{{ route('orders.index', 'all') }}" class="btn btn-primary {{ (request()->is('orders/all')) ? 'active' : '' }}">Celé obdobie</a>
         </div>
-
 
         {{-- Paginations-kyslik --}}
         <div>

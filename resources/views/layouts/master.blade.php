@@ -18,8 +18,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{-- ChartJS --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 
     {{-- Font awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
@@ -86,9 +84,9 @@
                     <span class="menu-collapsed">Zamestnanci</span>
                 </div>
             </a>
-            <a href="{{ route('new_order') }}" class="bg-dark list-group-item list-group-item-action">
+            <a href="{{ route('orders.create') }}" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-question fa-fw mr-3"></span>
+                    <span class="fas fa-cart-plus mr-3"></span>
                     <span class="menu-collapsed">Nová objednávka</span>
                 </div>
             </a>
