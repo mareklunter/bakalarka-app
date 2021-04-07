@@ -9,33 +9,6 @@ require('./bootstrap');
 //live search for selects - npm-modules
 require('../../node_modules/bootstrap-select/dist/js/bootstrap-select.min');
 
-
-window.Vue = require('vue');
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
-    el: '#app',
-});
-
-
 /**
  *  SIDEBAR   
  */
@@ -215,3 +188,32 @@ $(function () {
     $('select').filter(":visible").selectpicker();
 });
 
+
+//charts time period updating
+$('#charts-wrapper').on('click', 'a', function(e) {
+    if ( this.parentElement.dataset.chart == 'salesChart' ) {
+        var editChart = salesChart;
+    } else if ( this.parentElement.dataset.chart == 'ordersChart' ) {
+        var editChart = ordersChart;
+    };
+    
+    $.ajax({
+        url: $(this).attr("href"),
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            editChart.chart.data.labels = data.labels;
+            editChart.chart.data.datasets[0].data = data.data;
+            editChart.chart.update();
+        },
+        error: function(data) {
+            console.log('ajax error: ' + data);
+        }
+    });
+
+    let groupButtons = $(this).parent().find('a');
+    groupButtons.removeClass('active');
+    $(this).addClass('active'); 
+
+    e.preventDefault();
+})

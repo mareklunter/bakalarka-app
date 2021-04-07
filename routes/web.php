@@ -36,5 +36,9 @@ Route::get('/employees/shifts', 'EmployeeController@shifts')->name('employees.sh
 // frontend pages
 Route::get('/', 'FrontendController@dashboard')->name('dashboard');
 Route::get('/map', 'FrontendController@map')->name('map');
-Route::get('/statistics/{timePeriod?}', 'FrontendController@statistics')->name('statistics');
+Route::get('/statistics', 'FrontendController@statistics')->name('statistics');
+
+
+Route::get('/salesChartUpdate/{timePeriod?}', 'ChartController@salesChartUpdate')->name('salesChartUpdate');
+Route::get('/ordersChartUpdate/{timePeriod?}', 'ChartController@ordersChartUpdate')->name('ordersChartUpdate');
  

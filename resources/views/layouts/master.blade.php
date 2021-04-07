@@ -8,9 +8,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    
+   <!-- Charting library -->
+    <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- Chartisan -->
+    <script src="https://unpkg.com/@chartisan/chartjs@^2.1.0/dist/chartisan_chartjs.umd.js"></script>
+    
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script> 
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -94,9 +99,10 @@
     </div><!-- sidebar-container END -->
 
     <!-- MAIN -->
-    <main id="app" class="col p-4 d-none d-sm-block">
+    <main  class="col p-4 d-none d-sm-block">
         @yield('content')
     </main><!-- Main Col END -->
+
 </div><!-- body-row END -->
     
 </body>
