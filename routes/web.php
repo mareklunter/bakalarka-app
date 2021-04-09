@@ -29,7 +29,9 @@ Route::resource('workPositions', 'WorkPositionController');
 Route::resource('employees', 'EmployeeController')->only([ //|TODO dopln only pre vsetky ked budes mas hotovo
     'index', 'create', 'store', 'edit', 'update', 'destroy'
 ]);
-Route::get('/employees/shifts', 'EmployeeController@shifts')->name('employees.shifts');
+
+Route::get('/employees/shifts', 'ShiftController@index')->name('shifts.index');
+Route::post('/employees/shifts', 'ShiftController@store')->name('shifts.store');
 
 
 

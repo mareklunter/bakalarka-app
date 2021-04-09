@@ -27,4 +27,9 @@ class Employee extends Model
     public function workPosition() {
         return $this->belongsTo('App\WorkPosition');
     }
+
+    // Get shifts of the employee.
+    public function shifts() {
+        return $this->hasMany('App\Shift');
+    }
 }

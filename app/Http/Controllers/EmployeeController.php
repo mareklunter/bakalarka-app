@@ -112,11 +112,4 @@ class EmployeeController extends Controller
         return back();
     }
 
-
-    /**
-     * Show employee shifts calendar
-     */
-    public function shifts() {
-        return view('employees.shifts');
-    }
 }

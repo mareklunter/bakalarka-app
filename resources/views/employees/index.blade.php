@@ -46,7 +46,7 @@
         {!! $employees->appends(\Request::except('page'))->render() !!}
       </div>
 
-      <a href="{{ route('employees.shifts') }}" class="btn btn-primary">Smeny</a>
+      <a href="{{ route('shifts.index') }}" class="btn btn-primary">Smeny</a>
       <a href="{{ route('employees.create') }}" class="btn btn-info">Nový zamestnanec</a>
       <a href="{{ route('workPositions.index') }}" class="btn btn-warning">Pracovné pozície</a>
         

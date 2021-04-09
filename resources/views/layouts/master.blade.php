@@ -99,7 +99,7 @@
     </div><!-- sidebar-container END -->
 
     <!-- MAIN -->
-    <main  class="col p-4 d-none d-sm-block">
+    <main  class="col p-4">
         @yield('content')
     </main><!-- Main Col END -->
 
