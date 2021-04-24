@@ -18,8 +18,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script> 
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -59,10 +59,10 @@
                     <span class="menu-collapsed">Dashboard</span>
                 </div>
             </a>
-            <a href="{{ route('map') }}" class="bg-dark list-group-item list-group-item-action">
+            <a href="{{ route('tables.index') }}" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fas fa-location-arrow mr-3"></span>
-                    <span class="menu-collapsed">Mapa</span>
+                    <span class="fas fa-user-friends mr-3"></span>
+                    <span class="menu-collapsed">Obsadenosť</span>
                 </div>
             </a>
             <a href="{{ route('orders.index') }}" class="bg-dark list-group-item list-group-item-action">
@@ -99,7 +99,7 @@
     </div><!-- sidebar-container END -->
 
     <!-- MAIN -->
-    <main  class="col p-4">
+    <main  class="col p-3">
         @yield('content')
     </main><!-- Main Col END -->
 

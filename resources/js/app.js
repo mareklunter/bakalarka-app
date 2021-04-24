@@ -9,6 +9,7 @@ require('./bootstrap');
 //live search for selects - npm-modules
 require('../../node_modules/bootstrap-select/dist/js/bootstrap-select.min');
 
+
 /**
  *  SIDEBAR   
  */
@@ -57,7 +58,6 @@ function updateOrderPrice() {
 }
 
 function updateRowPrices(row) {
-
     $(row).on('change', function(){
         let selOption = $(row).find('option:selected');
         let amount = $(row).find('.amount').val();
@@ -107,8 +107,6 @@ orderRows.each(function(index, value) {
 });
 
 
-
-
 /**
  * ORDER TABLE - add new row to order
  */
@@ -117,7 +115,6 @@ var table = $("#orderTable").find('tbody');
 
 $('#addToOrder').on('click', function(event) {
     event.preventDefault();
-
 
     table.append(
     `
@@ -130,19 +127,19 @@ $('#addToOrder').on('click', function(event) {
 
         <td class="col-2">
             <div class="form-group">
-                <input type="float" class="form-control price" value="0" name="price[]" readonly>
+                <input type="number" step="0.01" min="0" min class="form-control price" value="0" readonly>
             </div>
         </td>
 
         <td class="col-2">
             <div class="form-group">
-                <input type="number" min="1" step="1" class="form-control amount" value="1" name="amount[]" disabled>
+                <input type="number" step="1" min="1" class="form-control amount" value="1" name="amount[]" disabled>
             </div>  
         </td>
 
         <td class="col-3">
             <div class="form-group">
-                <input type="float" class="form-control totalPrice" value="0" name="totalPrice[]" readonly>
+                <input type="number" step="0.01" min="0" class="form-control totalPrice" value="0" readonly>
             </div>  
         </td>
 
@@ -156,9 +153,8 @@ $('#addToOrder').on('click', function(event) {
 
     //add options to product select
     var select = $('#R'+rowIdx).find('.product');
-    console.log('#R'+rowIdx);
     
-    $('#selOptions option').each(function(){
+    $('#productOpt option').each(function(){
         var option = this;
         select.append(option.outerHTML);
     });
@@ -182,6 +178,11 @@ $('#addToOrder').on('click', function(event) {
     rowIdx++;
 });
 
+
+//update order price when form submitted
+$('#orderForm').on('submit', function(){
+    updateOrderPrice();
+});
 
 //live search for selects
 $(function () {
@@ -217,3 +218,13 @@ $('#charts-wrapper').on('click', 'a', function(e) {
 
     e.preventDefault();
 })
+
+//show-hide order details
+$('#orderList').on('click', '.orderDetails', function(event) {
+    $(this).closest('tr').next().toggle();
+    event.preventDefault();
+});
+
+
+
+    

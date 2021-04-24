@@ -3,58 +3,73 @@
 
 @section('content')
 
-    <div class="text-left">
-      <a href="{{route('employees.index')}}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Späť</a>
+    <div class="text-left mb-4">
+        <a href="{{ route('employees.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Späť</a>
     </div>
 
-    <form action="{{ route('employees.update', $employee) }}" method="POST">
-        @csrf
-        @method('PUT') 
-        
-        <div class="form-group">
-            <label for="firstName">Krstné meno:</label>
-            <input type="text" class="form-control" name="firstName" id="firstName" value="{{ $employee->firstName }}">
-          </div>
+    <div class="box box-big col col-md-10 col-lg-8">
+        <h2>Upraviť údaje zamestnanca</h2>
+        <form action="{{ route('employees.update', $employee) }}" method="POST">
+            @csrf
+            @method('PUT')
 
-          <div class="form-group">
-            <label for="lastName">Priezvisko:</label>
-            <input type="text" class="form-control" name="lastName" id="lastName" value="{{ $employee->lastName }}">
-          </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Krstné meno</span>
+                </div>
+                <input type="text" class="form-control" name="firstName" id="firstName" value="{{ $employee->firstName }}"
+                    required>
+            </div>
 
-          <div class="form-group">
-            <label for="workPosition">Pracovná pozícia:</label>
-            <select class="form-control" data-live-search="true" id="workPosition" name="workPosition">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Priezvisko</span>
+                </div>
+                <input type="text" class="form-control" name="lastName" id="lastName" value="{{ $employee->lastName }}"
+                    required>
+            </div>
 
-                @foreach ($workPositions as $position)
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="workPosition">Pracovná pozícia</label>
+                </div>
 
-                    @if ( $position->id == $employee->work_position_id)
-                      {{-- options are not-trashed positions except for already ordered item which was trashed  --}}
-                      @if ( $position->trashed() )
-                          <option value="{{ $position->id }}"  disabled selected>{{ $position->positionName }}</option>
-                      @else
-                          <option value="{{ $position->id }}" selected>{{ $position->positionName }}</option>
-                      @endif
+                <select class="form-control" data-live-search="true" id="workPosition" name="workPosition">
+                    @foreach ($workPositions as $position)
+                        @if ($position->id == $employee->work_position_id)
+                            {{-- options are not-trashed positions except for already ordered item which was trashed --}}
+                            @if ($position->trashed())
+                                <option value="{{ $position->id }}" disabled selected>{{ $position->positionName }}
+                                </option>
+                            @else
+                                <option value="{{ $position->id }}" selected>{{ $position->positionName }}</option>
+                            @endif
 
-                    @elseif ( ! $position->trashed() )
-                        <option value="{{ $position->id }}">{{ $position->positionName }}</option>
-                    @endif
+                        @elseif ( ! $position->trashed() )
+                            <option value="{{ $position->id }}">{{ $position->positionName }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
 
-                @endforeach
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Plat</span>
+                </div>
+                <input type="number" step="0.01" min="0" class="form-control" name="salary" id="salary"
+                    value="{{ $employee->salary }}" required>
+            </div>
 
-            </select>
-          </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Zamestnaný od</span>
+                </div>
+                <input type="date" value="{{ date('Y-m-d') }}" class="form-control" name="employedSince"
+                    id="employedSince" value="{{ $employee->employedSince }}" required>
+            </div>
 
-          <div class="form-group">
-            <label for="salary">Plat:</label>
-            <input type="integer" class="form-control" name="salary" id="salary" value="{{ $employee->salary }}">
-          </div>
-
-          <div class="form-group">
-            <label for="employedSince">Zamestnaný od:</label>
-            <input type="date" value="{{ date("Y-m-d") }}" class="form-control" name="employedSince" id="employedSince" value="{{ $employee->employedSince }}">
-          </div>
-
-        <button type="submit" class="btn btn-primary btn-sm">Potvrdiť</button>
-    </form>
+            <button type="submit" class="btn btn-primary">Potvrdiť</button>
+        </form>
+    </div>
 
 @endsection

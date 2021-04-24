@@ -28,7 +28,7 @@ class EmployeeController extends Controller
     {
         $workPositions = auth()->user()->workPositions;
 
-        return view("employees.create", [ 
+        return view("employees.create", [
             'workPositions' => $workPositions
         ]);
     }
@@ -97,7 +97,7 @@ class EmployeeController extends Controller
         $employee->salary            = $request->salary;
         $employee->employed_since    = $request->employedSince;
 
-        $employee->save(); 
+        $employee->save();
 
         return redirect(route('employees.index'));
     }
@@ -111,5 +111,4 @@ class EmployeeController extends Controller
 
         return back();
     }
-
 }

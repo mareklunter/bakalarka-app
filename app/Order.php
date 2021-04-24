@@ -15,7 +15,7 @@ class Order extends Model
     * The attributes that are mass assignable.
     */
     protected $fillable = [
-        'price', 'paid'
+        'price', 'paid', 'table_id'
     ];
 
 
@@ -27,6 +27,11 @@ class Order extends Model
     // Get the restaurant which offers this product.
     public function user() {
         return $this->belongsTo('App\User'); 
+    }
+
+    // Get the restaurant which offers this product.
+    public function table() {
+        return $this->belongsTo('App\Table'); 
     }
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPaidToOrderProductTable extends Migration
+class AddTableIdToOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddPaidToOrderProductTable extends Migration
      */
     public function up()
     {
-        Schema::table('order_product', function (Blueprint $table) {
-            $table->boolean('paid')->default(0);
+        Schema::table('orders', function (Blueprint $table) {
+            $table->foreignId('table_id')->nullable()->constrained();
         });
     }
 
@@ -25,8 +25,8 @@ class AddPaidToOrderProductTable extends Migration
      */
     public function down()
     {
-        Schema::table('order_product', function (Blueprint $table) {
-            $table->dropColumn('paid');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('table_id');
         });
     }
 }

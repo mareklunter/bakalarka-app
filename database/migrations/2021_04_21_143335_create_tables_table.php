@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeesTable extends Migration
+class CreateTablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->foreignId('work_position_id')->constrained();
-            $table->decimal('salary', 8, 2);
+            $table->string('tag');
+            $table->integer('seats');
+            $table->enum('type', ['square', 'rectangle', 'circle']);
+            $table->boolean('occupied')->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('tables');
     }
 }

@@ -32,4 +32,14 @@ class Employee extends Model
     public function shifts() {
         return $this->hasMany('App\Shift');
     }
+
+    
+    public function haveShift($day) {
+        $shift = $this->shifts()->whereDate('startDate', '<=', $day)->whereDate('endDate', '>=', $day)->first();
+        // dd($shift->description);
+        if ( $shift ) {
+            return $shift;
+        }
+        return false;
+    }
 }

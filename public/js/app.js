@@ -37445,11 +37445,10 @@ var rowIdx = orderRows.toArray().length; //set index to last row + 1
 var table = $("#orderTable").find('tbody');
 $('#addToOrder').on('click', function (event) {
   event.preventDefault();
-  table.append("\n    <tr class=\"d-flex\" id=\"R".concat(rowIdx, "\">\n        <td class=\"col-4\">\n            <select class=\"form-control product\" data-live-search=\"true\"  name=\"product[]\">\n            \n            </select>\n        </td>\n\n        <td class=\"col-2\">\n            <div class=\"form-group\">\n                <input type=\"float\" class=\"form-control price\" value=\"0\" name=\"price[]\" readonly>\n            </div>\n        </td>\n\n        <td class=\"col-2\">\n            <div class=\"form-group\">\n                <input type=\"number\" min=\"1\" step=\"1\" class=\"form-control amount\" value=\"1\" name=\"amount[]\" disabled>\n            </div>  \n        </td>\n\n        <td class=\"col-3\">\n            <div class=\"form-group\">\n                <input type=\"float\" class=\"form-control totalPrice\" value=\"0\" name=\"totalPrice[]\" readonly>\n            </div>  \n        </td>\n\n        <td class=\"col-1\">\n            <div class=\"form-group\">\n                <a href=\"#\" class=\"btn btn-danger btn-sm\" id=\"delete_R").concat(rowIdx, "\"><i class=\"fas fa-trash-alt\"></i></a>\n            </div>  \n        </td>\n    </tr>\n    ")); //add options to product select
+  table.append("\n    <tr class=\"d-flex\" id=\"R".concat(rowIdx, "\">\n        <td class=\"col-4\">\n            <select class=\"form-control product\" data-live-search=\"true\"  name=\"product[]\">\n            \n            </select>\n        </td>\n\n        <td class=\"col-2\">\n            <div class=\"form-group\">\n                <input type=\"number\" step=\"0.01\" min=\"0\" min class=\"form-control price\" value=\"0\" readonly>\n            </div>\n        </td>\n\n        <td class=\"col-2\">\n            <div class=\"form-group\">\n                <input type=\"number\" step=\"1\" min=\"1\" class=\"form-control amount\" value=\"1\" name=\"amount[]\" disabled>\n            </div>  \n        </td>\n\n        <td class=\"col-3\">\n            <div class=\"form-group\">\n                <input type=\"number\" step=\"0.01\" min=\"0\" class=\"form-control totalPrice\" value=\"0\" readonly>\n            </div>  \n        </td>\n\n        <td class=\"col-1\">\n            <div class=\"form-group\">\n                <a href=\"#\" class=\"btn btn-danger btn-sm\" id=\"delete_R").concat(rowIdx, "\"><i class=\"fas fa-trash-alt\"></i></a>\n            </div>  \n        </td>\n    </tr>\n    ")); //add options to product select
 
   var select = $('#R' + rowIdx).find('.product');
-  console.log('#R' + rowIdx);
-  $('#selOptions option').each(function () {
+  $('#productOpt option').each(function () {
     var option = this;
     select.append(option.outerHTML);
   }); //add live search to select
@@ -37463,6 +37462,10 @@ $('#addToOrder').on('click', function (event) {
 
   enableAmount(row);
   rowIdx++;
+}); //update order price when form submitted
+
+$('#orderForm').on('submit', function () {
+  updateOrderPrice();
 }); //live search for selects
 
 $(function () {
@@ -37494,6 +37497,11 @@ $('#charts-wrapper').on('click', 'a', function (e) {
   groupButtons.removeClass('active');
   $(this).addClass('active');
   e.preventDefault();
+}); //show-hide order details
+
+$('#orderList').on('click', '.orderDetails', function (event) {
+  $(this).closest('tr').next().toggle();
+  event.preventDefault();
 });
 
 /***/ }),

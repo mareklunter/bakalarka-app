@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Order;
-use App\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
-class OrderController extends Controller 
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(string $timePeriod = 'today')
     {
+        $strTimePeriod = $timePeriod;
         switch ($timePeriod) {
             case 'today':
                 $timePeriod = Carbon::today();
@@ -30,9 +29,9 @@ class OrderController extends Controller
                 break;
         }
 
-        $orders = auth()->user()->orders()->where('created_at', '>' , $timePeriod)->sortable()->paginate(10);
+        $orders = auth()->user()->orders()->where('created_at', '>', $timePeriod)->sortable()->paginate(10);
 
-        return view('orders.index', compact('orders'));
+        return view('orders.index', compact('orders', 'strTimePeriod'));
     }
 
     /**
@@ -41,10 +40,9 @@ class OrderController extends Controller
     public function create()
     {
         $products = auth()->user()->products;
+        $tables = auth()->user()->tables;
 
-        return view('orders.create', [
-            'products' => $products
-        ]);
+        return view('orders.create', compact('products', 'tables'));
     }
 
     /**
@@ -55,13 +53,14 @@ class OrderController extends Controller
         $this->validate($request, [
             'product'       => 'required',
             'amount'        => 'required',
-            'orderPrice'    => 'required'
+            'orderPrice'    => 'required',
+            'table_id'      => 'nullable'
         ]);
 
         //create order and add it to user
         $order = new Order([
-            'price' => $request->orderPrice,
-            // 'paid'  => true
+            'price'     => $request->orderPrice,
+            'table_id'  => $request->table_id,
         ]);
         
         $request->user()->orders()->save($order);
@@ -70,7 +69,7 @@ class OrderController extends Controller
         foreach ($request->product as $index => $product_id) {
             $product = auth()->user()->products->find($product_id);
 
-            for ($j=0; $j < $request->amount[$index]; $j++) { 
+            for ($j = 0; $j < $request->amount[$index]; $j++) {
                 $order->products()->attach($product, [
                     //we save current name and price to pivot table, because product can be edited in the future 
                     'product_name'  => $product->name,
@@ -79,16 +78,11 @@ class OrderController extends Controller
             }
         }
 
+        $this->updateTables();
+
         return redirect(route('orders.index'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource. 
@@ -96,22 +90,24 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         //redirect to index when order paid
-        if ( $order->paid ) {
+        if ($order->paid) {
             return redirect(route('orders.index'));
         }
 
         $products = auth()->user()->products()->withTrashed()->get();
+        $tables = auth()->user()->tables;
 
         //Count duplicate values of an given array:
-        $order_items = array_count_values( $order->products()->withTrashed()->get()->pluck('id')->toArray() );
+        $order_items = array_count_values($order->products()->withTrashed()->get()->pluck('id')->toArray()); 
 
         return view('orders.edit', [
             'order'         => $order,
+            'tables'        => $tables,
             'order_items'   => $order_items,
             'products'      => $products,
             'index'         => 0
         ]);
-    } 
+    }
 
     /**
      * Update the specified resource in storage.
@@ -121,11 +117,11 @@ class OrderController extends Controller
         $this->validate($request, [
             'product'       => 'required',
             'amount'        => 'required',
-            'orderPrice'    => 'required'
+            'orderPrice'    => 'required',
+            'table_id'      => 'nullable'
         ]);
-
-
-        //add-remove products to order - M:N relationship - edit pivot table
+            
+        //add-remove order products - M:N relationship - edit pivot table
         foreach ($request->product as $index => $product_id) {
 
             $product = auth()->user()->products->find($product_id);
@@ -136,7 +132,7 @@ class OrderController extends Controller
             foreach ($request->product as $index => $product_id) {
                 $product = auth()->user()->products->find($product_id);
 
-                for ($j=0; $j < $request->amount[$index]; $j++) { 
+                for ($j = 0; $j < $request->amount[$index]; $j++) {
                     $order->products()->attach($product, [
                         //we save current name and price to pivot table, because product can be edited in the future 
                         'product_name'  => $product->name,
@@ -147,8 +143,11 @@ class OrderController extends Controller
         }
 
         $order->price = $request->orderPrice;
-        $order->save(); 
+        $order->table_id = $request->table_id;
+        $order->save();
         
+        $this->updateTables();
+
         return redirect(route('orders.index'));
     }
 
@@ -158,6 +157,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
+        $this->updateTables();
 
         return redirect(route('orders.index'));
     }
@@ -169,29 +169,27 @@ class OrderController extends Controller
     {
         $order->paid = !($order->paid);
         $order->save();
+
+        $this->updateTables();
+
         return redirect(route('orders.index'));
     }
 
+
     /**
-     * Sort Order by status
+     * Update tables status
      */
-    public function sortStatus()
+    public function updateTables()
     {
-        // $orders = auth()->user()->orders();
-
-        $sortKey = session('key', 'asc');
-
-
-        if ( $sortKey == "asc") {
-            session(['key' => 'desc']);
-        } else {
-            session(['key' => 'asc']);
+        $tables = auth()->user()->tables;
+        foreach ($tables as $table) {
+            if( $table->orders->where('paid', false)->isEmpty() ) {
+                $table->occupied = false;
+            } else {
+                $table->occupied = true;
+            }
+            $table->save();
         }
-
-        $orders = auth()->user()->orders()->orderBy('paid', $sortKey)->paginate(10);
-        return redirect(route('orders.index'))->with('orders', $orders);
-        // return view('orders.index', [
-        //     'orders' => $orders
-        // ]);
     }
+
 }

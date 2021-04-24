@@ -9,9 +9,9 @@ html{
 
 body {
     background: $body-bg;
+    font-family: 'Rubik', sans-serif;
     font-size: 100%;
     text-align: center;
-
 }
 
 a {
@@ -20,7 +20,6 @@ a {
 
 a:hover{
     color: white;
-    // text-decoration: none;
 }
 
 ul{
@@ -43,9 +42,172 @@ ul{
     margin-right: 10%;
 }
 
+.green {
+    background: rgba(28, 175, 28, 0.55);
+}
+
+.grey {
+    background: rgb(211, 211, 211);
+}
+
+.btn-light {
+    border-color: #ced4da !important;
+}
+
+.box {
+    background: white;
+    box-shadow: 1px 1px 3px 1px rgba(51, 51, 51, 0.5);
+}
+
+.box-big {
+    margin: 0 auto;
+    padding: max(25px, 3%) max(25px, 8%);
+}
+
+.box-small {
+    padding: max(15px, 2%) max(18px, 5%);
+    max-height: 220px;
+    margin-bottom: 1rem;
+}
+
+h1, h2, h3 {
+    margin-bottom: 1rem;
+}
+
+h1{ 
+    font-size: clamp(1.6rem, 5vw, 2.5rem);
+}
+
+h2{ 
+    font-size: clamp(1.4rem, 4vw, 2rem);
+}
+
+h3{ 
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.table {
+    background-color: white;
+}
+
+//orders
+#orderTable {
+    background: whitesmoke;
+
+    .form-group {
+        margin-bottom: 5px;
+    }
+
+    #detailUploader {
+        display: none;
+    }
+}
+
+.orderDetailsDiv {
+    display: none;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
 
 //statistics
 .chart-box {
-    // background: red;
     margin-bottom: 50px; 
+
+    font-size: 14px;
+}
+
+
+//shifts
+#shift-table {
+    margin-bottom: 5px;
+
+    button {
+        display: inline-block;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.hint {
+    font-style: italic;
+    color: grey;
+}
+
+
+//tables 
+.table-box {
+    text-align: left;
+    font-size: clamp(12px, 2vw, 1rem);
+    border: 1px solid rgba(51, 51, 51, 0.3);
+    padding: 5px;
+    margin: 0 .25% 15px;
+    width: 24.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    p {
+        margin-bottom: 0px;
+    }
+
+    .tag {
+        text-align: center;
+        color: #B80F0A;
+        font-weight: bolder;
+        display: block;
+        border: 1px solid #B80F0A;
+    }
+
+    .square,
+    .rectangle,
+    .circle {
+        margin: 15px auto;
+        border: 2px solid rgb(41, 41, 41);
+    }
+
+    .square {
+        width: clamp(2.8rem, 6vw, 4rem);
+        height: clamp(2.8rem, 6vw, 4rem);
+    }
+
+    .rectangle {
+        width: clamp(3.6rem, 6vw, 5rem);
+        height: clamp(1.9rem, 4vw, 3rem);
+    }
+
+    .circle {
+        width: clamp(3.2rem, 6vw, 4.5rem);
+        height: clamp(3.2rem, 6vw, 4.5rem);
+        border-radius: 100%;
+    }
+
+    .badge {
+        padding: clamp(.2rem, 1vw, .3rem) clamp(.3rem, 1vw, .5rem);
+    }
+}
+
+
+
+//mediaQueries
+@media (max-width: $md) {
+    .table-box {
+        width: 33%;
+        margin: 0 .16% 15px;
+
+        .btn-danger {
+            padding: .15rem .3rem
+        }
+    }
+}
+
+@media (max-width: $sm) {
+    .table-box {
+        width: 49.5%;
+        margin: 0 .25% 15px;
+    }
 }

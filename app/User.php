@@ -32,28 +32,33 @@ class User extends Authenticatable
     ];
 
 
-    // Get all employees of this restaurant.
+    // Get all employees of the restaurant.
     public function employees() {
         return $this->hasMany('App\Employee');
     }
 
-    // Get all orders of this restaurant.
+    // Get all orders of the restaurant.
     public function orders() {
         return $this->hasMany('App\Order');
     }
 
-    // Get all products of this restaurant.
+    // Get all products of the restaurant.
     public function products() {
         return $this->hasMany('App\Product');
     }
 
-    // Get all work positions of this restaurant.
+    // Get all work positions of the restaurant.
     public function workPositions() {
         return $this->hasMany('App\WorkPosition');
     }
 
-    // Get all product caterogies of this restaurant.
+    // Get all product caterogies of the restaurant.
     public function productCategories() {
         return $this->hasMany('App\ProductCategory');
+    }
+
+    // Get all tables of the restaurant.
+    public function tables() {
+        return $this->hasMany('App\Table');
     }
 }

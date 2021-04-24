@@ -22,10 +22,6 @@ class FrontendController extends Controller
         ]);
     }
 
-    public function map() {
-        return view('frontend.map');
-    }
-
     public function statistics() {
         return view('frontend.statistics');
     }

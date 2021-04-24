@@ -4,7 +4,7 @@
 @section('content')
     
     <h1>Zamestnanci</h1>
-    <table class="table table-striped border-bottom">
+    <table class="table table-striped table-bordered">
         <thead class="bg-dark text-white">
           <tr>
             <th scope="col">@sortablelink('id', 'Id')</th>

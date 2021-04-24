@@ -7,7 +7,7 @@
     
     <div class="row justify-content-center" id="charts-wrapper">
  
-        <div class="chart-box col-11 col-lg-6">
+        <div class="chart-box col-11 col-lg-5">
             <div class="m-1" id="salesChart" style="height: 300px;"></div>
 
             <div data-chart="salesChart" class="btn-group">
@@ -18,7 +18,7 @@
             </div>
         </div>
         
-        <div class="chart-box col-11 col-lg-6">
+        <div class="chart-box col-11 col-lg-5">
             <div class="m-1" id="ordersChart" style="height: 300px;"></div>
 
             <div data-chart="ordersChart" class="btn-group">
