@@ -9,6 +9,12 @@ use PHPUnit\Framework\MockObject\Rule\InvokedAtIndex;
 
 class EmployeeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -57,19 +63,14 @@ class EmployeeController extends Controller
         return redirect(route('employees.index'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Employee $employee)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Employee $employee)
     {
+        $this->authorize('update', $employee);
+
         $workPositions = auth()->user()->workPositions()->withTrashed()->get();
 
         return view("employees.edit", [
@@ -83,6 +84,8 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
+        $this->authorize('update', $employee);
+       
         $this->validate($request, [
             'firstName'     => 'required|max:20',
             'lastName'      => 'required|max:20',

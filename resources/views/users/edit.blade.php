@@ -12,8 +12,10 @@
             </ul>
         </div>
     @endif
-
-    <form method="post" action="{{ route('users.edit', $user) }}">
+    
+    <h1>Úprava profilu</h1>
+    
+    <form method="post" action="{{ route('users.update', $user) }}">
         @csrf
         @method('PACTH')
 
@@ -25,7 +27,17 @@
 
         <input type="password" name="password_confirmation" />
 
-        <button type="submit">Send</button>
+        <button class="btn btn-primary" type="submit">Potvrdiť</button>
     </form>
+
+    
+    {{-- $table->string('name', 50);
+    $table->string('street', 50)->nullable();
+    $table->string('houseNumber', 10)->nullable();
+    $table->string('postalCode', 10)->nullable();
+    $table->string('city', 50)->nullable();
+    $table->string('email', 50)->unique();
+    $table->timestamp('email_verified_at')->nullable();
+    $table->string('password', 50); --}}
 
 @endsection

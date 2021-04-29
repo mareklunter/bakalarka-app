@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -17,6 +23,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $this->authorize('update', $user);
+        
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -28,6 +36,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $this->authorize('update', $user);
         //
     }
 

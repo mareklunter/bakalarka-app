@@ -19,7 +19,6 @@ Auth::routes();
 //user
 Route::resource('users', 'UserController');
 
-//TODO - dopln only metody
 Route::resource('orders', 'OrderController')->only([ 
     'create', 'store', 'edit', 'update', 'destroy', 
 ]);
@@ -30,11 +29,11 @@ Route::resource('productCategories', 'ProductCategoryController');
 Route::resource('products', 'ProductController');
 Route::resource('tables', 'TableController');
 Route::resource('workPositions', 'WorkPositionController');
-Route::resource('employees', 'EmployeeController')->only([ //|TODO dopln only pre vsetky ked budes mas hotovo
+Route::resource('employees', 'EmployeeController')->only([
     'index', 'create', 'store', 'edit', 'update', 'destroy'
 ]);
 
-Route::resource('shifts', 'ShiftController')->only([ //|TODO dopln only pre vsetky ked budes mas hotovo
+Route::resource('shifts', 'ShiftController')->only([
     'store', 'destroy'
 ]);
 Route::get('/shifts/{week?}/{action?}', 'ShiftController@index')->name('shifts.index');

@@ -14,7 +14,7 @@ class AddProductNameToOrderProductTable extends Migration
     public function up()
     {
         Schema::table('order_product', function (Blueprint $table) {
-            $table->string('product_name')->nullable();
+            $table->string('product_name');
         });
     }
 

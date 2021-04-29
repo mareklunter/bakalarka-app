@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -52,7 +58,7 @@ class OrderController extends Controller
     {
         $this->validate($request, [
             'product'       => 'required',
-            'amount'        => 'required|numeric',
+            'amount'        => 'required',
             'orderPrice'    => 'required',
             'table_id'      => 'nullable'
         ]);
@@ -89,6 +95,8 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
+        $this->authorize('update', $order);
+        
         //redirect to index when order paid
         if ($order->paid) {
             return redirect(route('orders.index'));
@@ -114,6 +122,8 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
+        $this->authorize('update', $order);
+        
         $this->validate($request, [
             'product'       => 'required',
             'amount'        => 'required',

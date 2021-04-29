@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -54,18 +60,12 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
     {
+        $this->authorize('update', $product);
+        
         $productCategories = auth()->user()->productCategories()->withTrashed()->get();
 
         return view("products.edit", [
@@ -79,13 +79,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $this->authorize('update', $product);
+        
         $this->validate($request, [
             'name'          => 'required|max:50',
             'price'         => 'required',
             'category'      => 'required',
             'description'   => 'nullable'
         ]);
-        
         
         $product->name                  = $request->name;
         $product->price                 = $request->price;

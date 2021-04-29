@@ -14,7 +14,7 @@ class AddProductPriceToOrderProductTable extends Migration
     public function up()
     {
         Schema::table('order_product', function (Blueprint $table) {
-            $table->decimal('product_price', 4, 2)->nullable();
+            $table->decimal('product_price', 4, 2);
         });
     }
 

@@ -7,11 +7,12 @@ use Carbon\Carbon;
 
 class FrontendController extends Controller
 {
+    // check if user is logged in when any method is called - if no, redirect to login
     public function __construct()
     {
-        // check if user is logged in when any method is called - if no, redirect to login
         $this->middleware('auth');
     }
+
 
     public function dashboard() {
         $oneHourLimit = Carbon::now()->subHour();

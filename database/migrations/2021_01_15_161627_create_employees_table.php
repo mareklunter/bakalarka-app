@@ -19,7 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->string('firstName',20);
             $table->string('lastName',20);
             $table->foreignId('work_position_id')->constrained();
-            $table->decimal('salary', 8, 2);
+            $table->string('phone', 15)->nullable();
             $table->timestamps();
         });
     }

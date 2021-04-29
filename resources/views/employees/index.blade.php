@@ -8,8 +8,8 @@
         <thead class="bg-dark text-white">
           <tr>
             <th scope="col">@sortablelink('lastName', 'Celé meno')</th>
-            <th scope="col">@sortablelink('salary', 'Plat')</th>
             <th scope="col">Pozícia</th>
+            <th scope="col">Tel. číslo</th>
             <th scope="col">@sortablelink('created_at', 'Pracuje od')</th>
             <th scope="col"><i class="fas fa-info"></i></th>
           </tr>
@@ -20,11 +20,10 @@
             @foreach ($employees as $employee)
                 <tr>
                     <td>{{ $employee->firstName . " " .  $employee->lastName}}</td>
-                    <td>{{ $employee->salary }}</td>
                     <td>{{ $employee->workPosition()->withTrashed()->get()->first()->positionName }}</td> 
+                    <td>8942198461</td>
                     {{-- cast DATE to DATETIME and then to 'd.m.Y' format -> argument of date_format() must be DATETIME--}}
                     <td>{{ date_format(DateTime::createFromFormat('Y-m-d', $employee->employed_since), 'd.m.Y') }}</td>
-
                     <td class="actions-2">
                       <a href="{{ route('employees.edit', $employee) }}" class="btn btn-primary btn-sm"><i class="far fa-edit"></i></a>
                       {{-- DELETE ITEM button/form--}}
