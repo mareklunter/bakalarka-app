@@ -2,6 +2,16 @@
 
 @section('content')
 
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <div class="text-left mb-4">
         <a href="{{ route('orders.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Späť</a>
     </div>

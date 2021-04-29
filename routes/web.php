@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 // auth
 Auth::routes();
 
+//user
+Route::resource('users', 'UserController');
+
 //TODO - dopln only metody
 Route::resource('orders', 'OrderController')->only([ 
     'create', 'store', 'edit', 'update', 'destroy', 
@@ -35,9 +38,6 @@ Route::resource('shifts', 'ShiftController')->only([ //|TODO dopln only pre vset
     'store', 'destroy'
 ]);
 Route::get('/shifts/{week?}/{action?}', 'ShiftController@index')->name('shifts.index');
-
-
-
 
 
 // frontend pages

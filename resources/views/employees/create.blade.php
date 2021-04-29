@@ -3,6 +3,16 @@
 
 @section('content')
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="text-left mb-4">
         <a href="{{ route('employees.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Späť</a>
     </div>
@@ -48,7 +58,8 @@
 
             <div class="from-group mb-4">
                 <label for="employedSince">Zamestnaný od:</label>
-                <input type="date" value="{{ date('Y-m-d') }}" class="form-control" name="employedSince" id="employedSince" required>
+                <input type="date" value="{{ date('Y-m-d') }}" class="form-control" name="employedSince"
+                    id="employedSince" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Potvrdiť</button>

@@ -85,7 +85,8 @@ class ProductController extends Controller
             'category'      => 'required',
             'description'   => 'required'
         ]);
-
+        
+        
         $product->name                  = $request->name;
         $product->price                 = $request->price;
         $product->product_category_id   = $request->category;

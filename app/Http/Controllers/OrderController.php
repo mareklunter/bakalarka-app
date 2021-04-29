@@ -120,7 +120,6 @@ class OrderController extends Controller
             'orderPrice'    => 'required',
             'table_id'      => 'nullable'
         ]);
-            
         //add-remove order products - M:N relationship - edit pivot table
         foreach ($request->product as $index => $product_id) {
 

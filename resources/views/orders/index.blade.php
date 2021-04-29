@@ -88,13 +88,13 @@
         {{-- Time period buttons --}}
         <div class="btn-group">
             <a href="{{ route('orders.index') }}"
-                class="btn btn-primary timePeriodBtn {{ request()->is('orders') ? 'active' : '' }}">Dnes</a>
+                class="btn btn-outline-primary timePeriodBtn {{ request()->is('orders') ? 'active' : '' }}">Dnes</a>
             <a href="{{ route('orders.index', 'week') }}"
-                class="btn btn-primary timePeriodBtn {{ request()->is('orders/week') ? 'active' : '' }}">Týždeň</a>
+                class="btn btn-outline-primary timePeriodBtn {{ request()->is('orders/week') ? 'active' : '' }}">Týždeň</a>
             <a href="{{ route('orders.index', 'month') }}"
-                class="btn btn-primary timePeriodBtn {{ request()->is('orders/month') ? 'active' : '' }}">Mesiac</a>
+                class="btn btn-outline-primary timePeriodBtn {{ request()->is('orders/month') ? 'active' : '' }}">Mesiac</a>
             <a href="{{ route('orders.index', 'all') }}"
-                class="btn btn-primary timePeriodBtn {{ request()->is('orders/all') ? 'active' : '' }}">Celé obdobie</a>
+                class="btn btn-outline-primary timePeriodBtn {{ request()->is('orders/all') ? 'active' : '' }}">Celé obdobie</a>
         </div>
 
         {{-- Paginations-kyslik --}}
