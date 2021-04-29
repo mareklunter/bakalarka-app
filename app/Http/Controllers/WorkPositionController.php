@@ -22,22 +22,12 @@ class WorkPositionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'positionName'  => 'required',
+            'positionName'  => 'required|max:20',
         ]);
 
         $request->user()->workPositions()->create([
@@ -45,40 +35,6 @@ class WorkPositionController extends Controller
         ]);
 
         return redirect(route('workPositions.index'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\WorkPosition  $workPosition
-     * @return \Illuminate\Http\Response
-     */
-    public function show(WorkPosition $workPosition)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\WorkPosition  $workPosition
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(WorkPosition $workPosition)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\WorkPosition  $workPosition
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, WorkPosition $workPosition)
-    {
-        //
     }
 
     /**

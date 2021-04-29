@@ -24,7 +24,6 @@
         <table class="table table-striped table-sm table-bordered col-11 col-md-7 order-md-last">
             <thead>
                 <tr class="bg-dark text-white">
-                    <th scope="col">ID</th>
                     <th scope="col">Pozícia</th>
                     <th scope="col"><i class="fas fa-info"></i></th>
                 </tr>
@@ -33,7 +32,6 @@
             <tbody>
                 @foreach ($workPositions as $position)
                     <tr>
-                        <th scope="row">{{ $position->id }}</th>
                         <td>{{ $position->positionName }}</td>
                         <td>
                             <form action="{{ route('workPositions.destroy', $position) }}"
@@ -58,7 +56,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Názov</span>
                     </div>
-                    <input type="text" class="form-control" name="positionName" id="positionName" required>
+                    <input type="text" class="form-control" maxlength="20" name="positionName" id="positionName" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Potvrdiť</button>

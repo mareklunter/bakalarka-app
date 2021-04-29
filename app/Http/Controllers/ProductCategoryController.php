@@ -19,15 +19,6 @@ class ProductCategoryController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +26,7 @@ class ProductCategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'  => 'required',
+            'name'  => 'required|max:20',
         ]);
 
         $request->user()->productCategories()->create([
@@ -45,39 +36,6 @@ class ProductCategoryController extends Controller
         return redirect(route('productCategories.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ProductCategory  $productCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ProductCategory $productCategory)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ProductCategory  $productCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProductCategory $productCategory)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ProductCategory  $productCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ProductCategory $productCategory)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

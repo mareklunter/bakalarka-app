@@ -57,7 +57,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Označenie</span>
                 </div>
-                <input type="text" class="form-control" name="tag" id="tag" placeholder="Stôl č.12" required>
+                <input type="text" class="form-control" placeholder="Stôl č.12" maxlength="20" id="tag" name="tag" required>
             </div>
 
             <div class="input-group mb-4">

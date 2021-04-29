@@ -101,7 +101,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Popis</span>
                 </div>
-                <input type="text" class="form-control" name="description" id="description">
+                <input type="text" class="form-control" maxlength="15" name="description" id="description">
             </div>
     
             <button type="submit" class="btn btn-primary">Potvrdiť</button>

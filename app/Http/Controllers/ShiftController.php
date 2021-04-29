@@ -49,14 +49,6 @@ class ShiftController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -64,12 +56,11 @@ class ShiftController extends Controller
      */
     public function store(Request $request)
     {
-        //check if shifts crosses
-
         $this->validate($request, [
             'employee_id'   => 'required',
-            'startDate'     => 'required',
-            'endDate'       => 'required',
+            'startDate'     => 'required|date|after:Monday this week',
+            'endDate'       => 'required|date|after:Monday this week',
+            'description'   => 'nullable|max:15',
         ]);
 
         $newShift = new Shift([
@@ -83,7 +74,6 @@ class ShiftController extends Controller
         //check employee shifts crossing
         foreach ($employee->shifts as $oldShift) {
             if (($newShift->startDate >= $oldShift->startDate && $newShift->startDate <= $oldShift->endDate) || ($newShift->endDate >= $oldShift->startDate && $newShift->endDate <= $oldShift->endDate)) {
-                //pozri laravel error handling a vypis chybu na view <<<<<<<<<<<<<<<<<<<<<<<<<<<<,,
                 return redirect(route('shifts.index'));
             }
         }
@@ -94,39 +84,6 @@ class ShiftController extends Controller
         return redirect(route('shifts.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Shift  $shift
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Shift $shift)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Shift  $shift
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Shift $shift)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Shift  $shift
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Shift $shift)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

@@ -27,14 +27,14 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Meno</span>
                 </div>
-                <input type="text" class="form-control" name="firstName" id="firstName" required>
+                <input type="text" class="form-control" maxlength="20" name="firstName" id="firstName" required>
             </div>
 
             <div class="input-group mb-4">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Priezvisko</span>
                 </div>
-                <input type="text" class="form-control" name="lastName" id="lastName" required>
+                <input type="text" class="form-control" maxlength="20" name="lastName" id="lastName" required>
             </div>
 
             <div class="input-group mb-4">

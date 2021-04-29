@@ -1,13 +1,12 @@
 @extends('layouts.master')
 
 
-@section('content')
+@section('content') 
     
     <h1>Zamestnanci</h1>
-    <table class="table table-striped table-bordered">
+    <table class="table table-sm table-striped table-bordered">
         <thead class="bg-dark text-white">
           <tr>
-            <th scope="col">@sortablelink('id', 'Id')</th>
             <th scope="col">@sortablelink('lastName', 'Celé meno')</th>
             <th scope="col">@sortablelink('salary', 'Plat')</th>
             <th scope="col">Pozícia</th>
@@ -20,7 +19,6 @@
 
             @foreach ($employees as $employee)
                 <tr>
-                    <th scope="row">{{ $employee->id }}</th>
                     <td>{{ $employee->firstName . " " .  $employee->lastName}}</td>
                     <td>{{ $employee->salary }}</td>
                     <td>{{ $employee->workPosition()->withTrashed()->get()->first()->positionName }}</td> 

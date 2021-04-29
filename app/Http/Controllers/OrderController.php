@@ -52,7 +52,7 @@ class OrderController extends Controller
     {
         $this->validate($request, [
             'product'       => 'required',
-            'amount'        => 'required',
+            'amount'        => 'required|numeric',
             'orderPrice'    => 'required',
             'table_id'      => 'nullable'
         ]);
@@ -158,7 +158,7 @@ class OrderController extends Controller
         $order->delete();
         $this->updateTables();
 
-        return redirect(route('orders.index'));
+        return back();
     }
 
     /**
@@ -171,7 +171,7 @@ class OrderController extends Controller
 
         $this->updateTables();
 
-        return redirect(route('orders.index'));
+        return back();
     }
 
 

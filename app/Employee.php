@@ -9,7 +9,7 @@ class Employee extends Model
 {
 
     use Sortable;
-    public $sortable = ['id','lastName','salary','created_at'];
+    public $sortable = ['lastName','salary','created_at'];
 
     /**
     * The attributes that are mass assignable.

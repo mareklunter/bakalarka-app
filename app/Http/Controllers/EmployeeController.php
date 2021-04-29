@@ -39,8 +39,8 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'firstName'     => 'required|max:50',
-            'lastName'      => 'required|max:50',
+            'firstName'     => 'required|max:20',
+            'lastName'      => 'required|max:20',
             'workPosition'  => 'required',
             'salary'        => 'required',
             'employedSince' => 'required',
@@ -84,8 +84,8 @@ class EmployeeController extends Controller
     public function update(Request $request, Employee $employee)
     {
         $this->validate($request, [
-            'firstName'     => 'required|max:50',
-            'lastName'      => 'required|max:50',
+            'firstName'     => 'required|max:20',
+            'lastName'      => 'required|max:20',
             'workPosition'  => 'required',
             'salary'        => 'required',
             'employedSince' => 'required',

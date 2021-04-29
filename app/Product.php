@@ -11,7 +11,7 @@ class Product extends Model
     use SoftDeletes;
     use Sortable;
 
-    public $sortable = ['id','name','price'];
+    public $sortable = ['name','price'];
 
     /**
     * The attributes that are mass assignable.
@@ -19,11 +19,6 @@ class Product extends Model
     protected $fillable = [
         'price', 'name', 'product_category_id', 'description'
     ];
-
-    // Get the order(s) which contains this item.
-    // public function order() {
-    //    return $this->belongsToMany('App\Order'); // |TODO je toto potrebne??
-    // }
 
     // Get the restaurant where this order was made.
     public function user() {

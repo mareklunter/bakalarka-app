@@ -16,8 +16,8 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('firstName');
-            $table->string('lastName');
+            $table->string('firstName',20);
+            $table->string('lastName',20);
             $table->foreignId('work_position_id')->constrained();
             $table->decimal('salary', 8, 2);
             $table->timestamps();

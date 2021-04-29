@@ -3,6 +3,16 @@
 
 @section('content')
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     {{-- ALL CATEGORIES --}}
     <div class="text-left mb-4">
         <a href="{{ route('products.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Späť</a>
@@ -13,7 +23,6 @@
         <table class="table table-striped table-sm table-bordered col-11 col-md-7 order-md-last">
             <thead>
                 <tr class="bg-dark text-white">
-                    <th scope="col">ID</th>
                     <th scope="col">Kategória</th>
                     <th scope="col"><i class="fas fa-info"></i></th>
                 </tr>
@@ -22,7 +31,6 @@
             <tbody>
                 @foreach ($productCategories as $category)
                     <tr>
-                        <th scope="row">{{ $category->id }}</th>
                         <td>{{ $category->categoryName }}</td>
                         <td>
                             <form action="{{ route('productCategories.destroy', $category) }}"
@@ -47,7 +55,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Názov</span>
                     </div>
-                    <input type="text" class="form-control" name="name" id="name" required>
+                    <input type="text" class="form-control" maxlength="20" name="name" id="name" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Potvrdiť</button>

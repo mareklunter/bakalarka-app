@@ -25,7 +25,7 @@ class TableController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'tag'   => 'required',
+            'tag'   => 'required|unique:tables|max:20',
             'seats' => 'required',
             'type'  => 'required'
         ]);

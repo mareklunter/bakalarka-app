@@ -27,7 +27,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Krstné meno</span>
                 </div>
-                <input type="text" class="form-control" name="firstName" id="firstName" value="{{ $employee->firstName }}"
+                <input type="text" class="form-control" maxlength="20" name="firstName" id="firstName" value="{{ $employee->firstName }}"
                     required>
             </div>
 
@@ -35,7 +35,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Priezvisko</span>
                 </div>
-                <input type="text" class="form-control" name="lastName" id="lastName" value="{{ $employee->lastName }}"
+                <input type="text" class="form-control" maxlength="20" name="lastName" id="lastName" value="{{ $employee->lastName }}"
                     required>
             </div>
 

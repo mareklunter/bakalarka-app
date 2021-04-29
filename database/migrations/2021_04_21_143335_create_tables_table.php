@@ -16,7 +16,7 @@ class CreateTablesTable extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('tag');
+            $table->string('tag', 20)->unique();
             $table->integer('seats');
             $table->enum('type', ['square', 'rectangle', 'circle']);
             $table->boolean('occupied')->default(0);

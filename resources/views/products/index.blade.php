@@ -6,7 +6,6 @@
     <table class="table table-striped table-sm table-bordered">
         <thead>
             <tr class="bg-dark text-white">
-                <th scope="col">@sortablelink('id', 'Id')</th>
                 <th scope="col">@sortablelink('name', 'Názov')</th>
                 <th scope="col">@sortablelink('price', 'Cena')</th>
                 <th scope="col">Kategória</th>
@@ -17,7 +16,6 @@
         <tbody>
             @foreach ($products as $product)
                 <tr>
-                    <th scope="row">{{ $product->id }}</th>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->productCategory()->withTrashed()->get()->first()->categoryName }}</td>

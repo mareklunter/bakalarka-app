@@ -27,7 +27,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Názov</span>
                 </div>
-                <input type="text" class="form-control" name="name" id="name" value="{{ $product->name }}" required>
+                <input type="text" class="form-control" maxlength="50" name="name" id="name" value="{{ $product->name }}" required>
             </div>
 
             <div class="input-group mb-4">
@@ -67,7 +67,7 @@
                     <span class="input-group-text">Popis</span>
                 </div>
                 <input type="text" class="form-control" name="description" id="description"
-                    value="{{ $product->description }}" required>
+                    value="{{ $product->description }}">
             </div>
 
             <button type="submit" class="btn btn-primary">Potvrdiť</button>

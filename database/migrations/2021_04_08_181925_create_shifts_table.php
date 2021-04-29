@@ -18,7 +18,7 @@ class CreateShiftsTable extends Migration
             $table->foreignId('employee_id')->constrained()->onDelete('cascade');
             $table->date('startDate');
             $table->date('endDate');
-            $table->string('description')->nullable();
+            $table->string('description', 15)->nullable();
         });
     }
 

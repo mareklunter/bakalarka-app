@@ -37,10 +37,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'          => 'required',
+            'name'          => 'required|max:50',
             'price'         => 'required',
             'category'      => 'required',
-            'description'   => 'required'
+            'description'   => 'nullable'
         ]);
 
         $request->user()->products()->create([
@@ -80,10 +80,10 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $this->validate($request, [
-            'name'          => 'required',
+            'name'          => 'required|max:50',
             'price'         => 'required',
             'category'      => 'required',
-            'description'   => 'required'
+            'description'   => 'nullable'
         ]);
         
         
