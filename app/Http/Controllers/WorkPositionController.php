@@ -8,12 +8,6 @@ use Illuminate\Http\Request;
 
 class WorkPositionController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -31,13 +25,24 @@ class WorkPositionController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = $request->user()->id;
         $this->validate($request, [
-            'positionName'  => 'required|max:20',
+            'positionName'  => "required|max:20|unique:work_positions,positionName,NULL,id,deleted_at,NULL,user_id,$user_id",
         ]);
 
-        $request->user()->workPositions()->create([
-            'positionName'  => $request->positionName
-        ]);
+        $is_trashed = $request->user()->workPositions()->onlyTrashed()->get()->where('positionName', '=', $request->positionName)->first();
+
+        if ($is_trashed) {
+
+            $is_trashed->deleted_at = null;
+            $is_trashed->save();
+
+        } else {
+
+            $request->user()->workPositions()->create([
+                'positionName'  => $request->positionName
+            ]);
+        }
 
         return redirect(route('workPositions.index'));
     }

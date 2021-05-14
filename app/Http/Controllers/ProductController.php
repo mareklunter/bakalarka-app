@@ -7,12 +7,6 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -42,19 +36,36 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = $request->user()->id;
         $this->validate($request, [
-            'name'          => 'required|max:50',
+            'name'          => "required|max:50|unique:products,name,NULL,id,deleted_at,NULL,user_id,$user_id",
             'price'         => 'required',
             'category'      => 'required',
             'description'   => 'nullable'
         ]);
 
-        $request->user()->products()->create([
-            'name'                  => $request->name,
-            'price'                 => $request->price,
-            'product_category_id'   => $request->category,
-            'description'           => $request->description
-        ]);
+        $is_trashed = $request->user()->products()->onlyTrashed()->get()->where('name', '=', $request->name)->first();
+
+        //check if product exist but was deleted, if yes: set deleted_at=NULL and update new values 
+        if($is_trashed) {
+
+            $is_trashed->deleted_at            = null;
+            $is_trashed->price                 = $request->price;
+            $is_trashed->product_category_id   = $request->category;
+            $is_trashed->description           = $request->description;
+
+            $is_trashed->save(); 
+
+        } else {
+
+            $request->user()->products()->create([
+                'name'                  => $request->name,
+                'price'                 => $request->price,
+                'product_category_id'   => $request->category,
+                'description'           => $request->description
+            ]);
+
+        }
 
         return redirect(route('products.index'));
     }
@@ -82,7 +93,7 @@ class ProductController extends Controller
         $this->authorize('update', $product);
         
         $this->validate($request, [
-            'name'          => 'required|max:50',
+            'name'          => 'required|max:50|unique:products,name,NULL,id,deleted_at,NULL',
             'price'         => 'required',
             'category'      => 'required',
             'description'   => 'nullable'

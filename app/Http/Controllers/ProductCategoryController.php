@@ -7,12 +7,6 @@ use Illuminate\Http\Request;
 
 class ProductCategoryController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -31,14 +25,25 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = $request->user()->id;
         $this->validate($request, [
-            'name'  => 'required|max:20',
+            'name'  => "required|max:20|unique:product_categories,categoryName,NULL,id,deleted_at,NULL,user_id,$user_id",
         ]);
 
-        $request->user()->productCategories()->create([
-            'categoryName'  => $request->name
-        ]);
+        $is_trashed = $request->user()->productCategories()->onlyTrashed()->get()->where('categoryName', '=', $request->name)->first();
 
+        if($is_trashed) {
+
+            $is_trashed->deleted_at = null;
+            $is_trashed->save(); 
+
+        } else {
+
+            $request->user()->productCategories()->create([
+                'categoryName'  => $request->name
+            ]);
+
+        }
         return redirect(route('productCategories.index'));
     }
 

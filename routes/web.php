@@ -16,34 +16,35 @@ use Illuminate\Support\Facades\Route;
 // auth
 Auth::routes();
 
-//user
-Route::resource('users', 'UserController');
+Route::middleware(['auth'])->group(function() {  
+    //user
+    Route::resource('users', 'UserController');
 
-Route::resource('orders', 'OrderController')->only([ 
-    'create', 'store', 'edit', 'update', 'destroy', 
-]);
-Route::get('/orders/{timePeriod?}', 'OrderController@index')->name('orders.index');
-Route::get('orders/{order}/pay', 'OrderController@pay')->name('orders.pay');
-Route::get('/orders/sortStatus', 'OrderController@sortStatus')->name('orders.sortStatus');
-Route::resource('productCategories', 'ProductCategoryController');
-Route::resource('products', 'ProductController');
-Route::resource('tables', 'TableController');
-Route::resource('workPositions', 'WorkPositionController');
-Route::resource('employees', 'EmployeeController')->only([
-    'index', 'create', 'store', 'edit', 'update', 'destroy'
-]);
+    Route::resource('orders', 'OrderController')->only([ 
+        'create', 'store', 'edit', 'update', 'destroy', 
+    ]);
+    Route::get('/orders/{timePeriod?}', 'OrderController@index')->name('orders.index');
+    Route::get('orders/{order}/pay', 'OrderController@pay')->name('orders.pay');
+    Route::get('/orders/sortStatus', 'OrderController@sortStatus')->name('orders.sortStatus');
+    Route::resource('productCategories', 'ProductCategoryController');
+    Route::resource('products', 'ProductController');
+    Route::resource('tables', 'TableController');
+    Route::resource('workPositions', 'WorkPositionController');
+    Route::resource('employees', 'EmployeeController')->only([
+        'index', 'create', 'store', 'edit', 'update', 'destroy'
+    ]);
 
-Route::resource('shifts', 'ShiftController')->only([
-    'store', 'destroy'
-]);
-Route::get('/shifts/{week?}/{action?}', 'ShiftController@index')->name('shifts.index');
+    Route::resource('shifts', 'ShiftController')->only([
+        'store', 'destroy'
+    ]);
+    Route::get('/shifts/{week?}/{action?}', 'ShiftController@index')->name('shifts.index');
 
 
-// frontend pages
-Route::get('/', 'FrontendController@dashboard')->name('dashboard');
-Route::get('/statistics', 'FrontendController@statistics')->name('statistics');
+    // frontend pages
+    Route::get('/', 'FrontendController@dashboard')->name('dashboard');
+    Route::get('/statistics', 'FrontendController@statistics')->name('statistics');
 
-//charts
-Route::get('/salesChartUpdate/{timePeriod?}', 'ChartController@salesChartUpdate')->name('salesChartUpdate');
-Route::get('/ordersChartUpdate/{timePeriod?}', 'ChartController@ordersChartUpdate')->name('ordersChartUpdate');
- 
+    //charts
+    Route::get('/salesChartUpdate/{timePeriod?}', 'ChartController@salesChartUpdate')->name('salesChartUpdate');
+    Route::get('/ordersChartUpdate/{timePeriod?}', 'ChartController@ordersChartUpdate')->name('ordersChartUpdate');
+});

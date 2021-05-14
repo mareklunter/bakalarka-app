@@ -7,13 +7,6 @@ use Carbon\Carbon;
 
 class FrontendController extends Controller
 {
-    // check if user is logged in when any method is called - if no, redirect to login
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     public function dashboard() {
         $oneHourLimit = Carbon::now()->subHour();
         $orderLimitCount = auth()->user()->orders()->where('created_at', '<' , $oneHourLimit)->count();
@@ -25,9 +18,5 @@ class FrontendController extends Controller
 
     public function statistics() {
         return view('frontend.statistics');
-    }
-
-    public function new_order() {
-        return view('frontend.new_order');
     }
 }
