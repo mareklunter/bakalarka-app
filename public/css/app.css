@@ -107,6 +107,14 @@ h3 {
   background-color: white;
 }
 
+fieldset {
+  text-align: left;
+}
+
+#userPassEdit {
+  display: none;
+}
+
 #orderTable {
   background: whitesmoke;
 }

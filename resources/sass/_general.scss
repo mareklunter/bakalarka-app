@@ -90,6 +90,15 @@ h3{
     background-color: white;
 }
 
+fieldset {
+    text-align: left;
+}
+
+//users
+#userPassEdit {
+    display: none;
+}
+
 //orders
 #orderTable {
     background: whitesmoke;
@@ -226,6 +235,7 @@ h3{
     }
 
 }
+
 
 
 //mediaQueries

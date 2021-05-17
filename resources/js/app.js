@@ -226,5 +226,17 @@ $('#orderList').on('click', '.orderDetails', function(event) {
 });
 
 
+$('#showUserPassEdit').on('click', function(event){
+    $('#userInfoEdit').hide();
+    $('#userPassEdit').show();
+    event.preventDefault();
+})
+
+$('#showUserInfoEdit').on('click', function(event){
+    $('#userInfoEdit').show();
+    $('#userPassEdit').hide();
+    event.preventDefault();
+})
+
 
     

@@ -26,12 +26,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="adress" class="col-md-4 col-form-label text-md-right">{{ __('Adresa') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Adresa') }}</label>
 
                             <div class="col-md-6">
-                                <input id="adress" type="text" class="form-control @error('adress') is-invalid @enderror" name="adress" placeholder="Obchodná 123/4, 811 06 Bratislava" value="{{ old('adress') }}" required autocomplete="adress" autofocus>
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" placeholder="Obchodná 123/4, 811 06 Bratislava" value="{{ old('address') }}" required autocomplete="address" autofocus>
 
-                                @error('adress')
+                                @error('address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -46,6 +46,20 @@
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Tel. číslo') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+
+                                @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

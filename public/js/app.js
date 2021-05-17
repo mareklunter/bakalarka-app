@@ -37503,6 +37503,16 @@ $('#orderList').on('click', '.orderDetails', function (event) {
   $(this).closest('tr').next().toggle();
   event.preventDefault();
 });
+$('#showUserPassEdit').on('click', function (event) {
+  $('#userInfoEdit').hide();
+  $('#userPassEdit').show();
+  event.preventDefault();
+});
+$('#showUserInfoEdit').on('click', function (event) {
+  $('#userInfoEdit').show();
+  $('#userPassEdit').hide();
+  event.preventDefault();
+});
 
 /***/ }),
 

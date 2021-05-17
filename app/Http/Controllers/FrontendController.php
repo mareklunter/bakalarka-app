@@ -11,6 +11,7 @@ class FrontendController extends Controller
         $oneHourLimit = Carbon::now()->subHour();
         $orderLimitCount = auth()->user()->orders()->where('created_at', '<' , $oneHourLimit)->count();
 
+
         return view('frontend.dashboard', [
             'orderLimitCount' => $orderLimitCount
         ]);

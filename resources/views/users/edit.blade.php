@@ -13,31 +13,82 @@
         </div>
     @endif
     
-    <h1>Úprava profilu</h1>
-    
-    <form method="post" action="{{ route('users.update', $user) }}">
-        @csrf
-        @method('PACTH')
+    <div class="box box-big col col-md-10 col-lg-8" id="userInfoEdit">
+        <h1>Profil</h1>
+        <form method="post" action="{{ route('users.update', $user) }}">
+            @csrf
+            @method('PATCH')
+            
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Názov</span>
+                </div>
+                <input type="text" class="form-control" name="name" value="{{ $user->name }}" required>
+            </div>
 
-        <input type="text" name="name" value="{{ $user->name }}" />
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Email</span>
+                </div>
+                <fieldset class="form-control" disabled>{{ $user->email }}</fieldset>
+            </div>
 
-        <input type="email" name="email" value="{{ $user->email }}" />
+            {{-- <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Názov</span>
+                </div>
+                <input type="text" class="form-control" name="address" value="{{ $user->address }}" required>
+            </div> --}}
 
-        <input type="password" name="password" />
+            {{-- <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Názov</span>
+                </div>
+                <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" required>
+            </div> --}}
+            
+            <button class="btn btn-primary" type="submit">Uložiť</button>
+        </form>
 
-        <input type="password" name="password_confirmation" />
+        <div class="text-left">
+            <a href="#" class="btn btn-light" id="showUserPassEdit">Zmeniť heslo</a>
+        </div>
+    </div>
 
-        <button class="btn btn-primary" type="submit">Potvrdiť</button>
-    </form>
+    <div class="box box-big col col-md-10 col-lg-8" id="userPassEdit">
+        <h1>Profil</h1>
+        <form method="post" action="{{ route('users.update', $user) }}">
+            @csrf
+            @method('PATCH')
 
-    
-    {{-- $table->string('name', 50);
-    $table->string('street', 50)->nullable();
-    $table->string('houseNumber', 10)->nullable();
-    $table->string('postalCode', 10)->nullable();
-    $table->string('city', 50)->nullable();
-    $table->string('email', 50)->unique();
-    $table->timestamp('email_verified_at')->nullable();
-    $table->string('password', 50); --}}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Staré heslo</span>
+                </div>
+                <input type="password" class="form-control" name="old_pass" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Nové heslo</span>
+                </div>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Zopakuj heslo</span>
+                </div>
+                <input type="password" class="form-control" name="password_confirmation" required>
+            </div>
+            
+            <button class="btn btn-primary" type="submit">Uložiť</button>
+        </form>
+
+        <div class="text-left">
+            <a href="#" class="btn btn-light" id="showUserInfoEdit">Zmeniť ostatné údaje</a>
+        </div>
+    </div>
+
 
 @endsection

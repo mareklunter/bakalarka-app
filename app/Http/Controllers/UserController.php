@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 
 class UserController extends Controller
 {
@@ -31,7 +33,27 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $this->authorize('update', $user);
-        //
+        
+        if (isset($request->password)) {
+            $this->validate($request, [
+                'old_pass'      => 'required|password',
+                'password'      => 'required|confirmed|string|min:8'
+            ]);
+            $user->password = Hash::make($request->password);
+        } else {
+            $this->validate($request, [
+                'name'    => 'required',
+                // 'adress'  => 'required',
+                // 'phone'   => 'nullable'
+            ]);
+            $user->name = $request->name;
+            // $user->address = $request->address;
+            // $user->phone = $request->phone;
+        }
+
+        $user->save();
+
+        return redirect()->route('dashboard');
     }
 
     /**
