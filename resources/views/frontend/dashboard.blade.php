@@ -19,17 +19,17 @@
     <h2>Dnes</h2>
     <div class="row justify-content-around">
         <div class="box dashboard-box box-dark col-10 col-md-7 col-lg-3">
-            <span class="info-row big">4</span>
+            <span class="info-row big">{{$emplToday}}</span>
             Pracuje zamestnancov
         </div>
     
         <div class="box dashboard-box box-red col-10 col-md-7 col-lg-3">
-            <span class="info-row big">5</span>
+            <span class="info-row big">{{$ordersToday}}</span>
             Počet objednávok
         </div>
     
         <div class="box dashboard-box box-yellow col-10 col-md-7 col-lg-3">
-            <span class="info-row big">546.98€</span>
+            <span class="info-row big">{{$salesToday}}€</span>
             Tržby
         </div>
     </div>

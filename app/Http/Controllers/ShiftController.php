@@ -58,8 +58,8 @@ class ShiftController extends Controller
     {
         $this->validate($request, [
             'employee_id'   => 'required',
-            'startDate'     => 'required|date|after:Monday this week',
-            'endDate'       => 'required|date|after:Monday this week',
+            'startDate'     => 'required|date',
+            'endDate'       => 'required|date',
             'description'   => 'nullable|max:15',
         ]);
 
