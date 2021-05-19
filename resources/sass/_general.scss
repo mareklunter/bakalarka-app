@@ -94,6 +94,7 @@ fieldset {
     text-align: left;
 }
 
+
 //users
 #userPassEdit {
     display: none;
@@ -120,6 +121,11 @@ fieldset {
     }
 }
 
+#orderForm {
+    input {
+        min-width: 80px;
+    }
+}
 
 //statistics
 .chart-box {
@@ -236,6 +242,15 @@ fieldset {
 
 }
 
+//login-register card
+.card {
+    text-align: left;
+}
+
+//auth header
+.header-logo {
+    margin: 0 auto;
+}
 
 
 //mediaQueries

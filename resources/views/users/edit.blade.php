@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 
 @section('content')
@@ -47,7 +47,7 @@
                 <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" required>
             </div> --}}
             
-            <button class="btn btn-primary" type="submit">Uložiť</button>
+            <button class="btn btn-primary mb-2" type="submit">Uložiť</button>
         </form>
 
         <div class="text-left">
@@ -82,7 +82,7 @@
                 <input type="password" class="form-control" name="password_confirmation" required>
             </div>
             
-            <button class="btn btn-primary" type="submit">Uložiť</button>
+            <button class="btn btn-primary mb-2" type="submit">Uložiť</button>
         </form>
 
         <div class="text-left">

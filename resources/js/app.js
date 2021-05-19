@@ -1,47 +1,5 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
-
-//live search for selects - npm-modules
-require('../../node_modules/bootstrap-select/dist/js/bootstrap-select.min');
-
-
-/**
- *  SIDEBAR   
- */
-// Hide submenus
-$('#body-row .collapse').collapse('hide'); 
-
-// Collapse/Expand icon
-$('#collapse-icon').addClass('fa-angle-double-left'); 
-
-// Collapse click
-$('[data-toggle=sidebar-colapse]').on('click', function() {
-    SidebarCollapse();
-});
-
-function SidebarCollapse () {
-    $('.menu-collapsed').toggleClass('d-none');
-    $('.sidebar-submenu').toggleClass('d-none');
-    $('.submenu-icon').toggleClass('d-none');
-    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-    
-    // Treating d-flex/d-none on separators with title
-    var SeparatorTitle = $('.sidebar-separator-title');
-    if ( SeparatorTitle.hasClass('d-flex') ) {
-        SeparatorTitle.removeClass('d-flex');
-    } else {
-        SeparatorTitle.addClass('d-flex');
-    }
-    
-    // Collapse/Expand icon
-    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-}
-
+require('bootstrap-select'); //live search for selects - npm-modules
 
 
 /**
@@ -118,32 +76,32 @@ $('#addToOrder').on('click', function(event) {
 
     table.append(
     `
-    <tr class="d-flex" id="R${rowIdx}">
-        <td class="col-4">
-            <select class="form-control product" data-live-search="true"  name="product[]">
+    <tr id="R${rowIdx}">
+        <td>
+            <select class="form-control product"  data-container="#R${rowIdx}" data-size="5" title="-- vyber produkt --" data-live-search="true"  name="product[]">
             
             </select>
         </td>
 
-        <td class="col-2">
+        <td>
             <div class="form-group">
                 <input type="number" step="0.01" min="0" min class="form-control price" value="0" readonly>
             </div>
         </td>
 
-        <td class="col-2">
+        <td>
             <div class="form-group">
                 <input type="number" step="1" min="1" class="form-control amount" value="1" name="amount[]" disabled>
             </div>  
         </td>
 
-        <td class="col-3">
+        <td>
             <div class="form-group">
                 <input type="number" step="0.01" min="0" class="form-control totalPrice" value="0" readonly>
             </div>  
         </td>
 
-        <td class="col-1">
+        <td>
             <div class="form-group">
                 <a href="#" class="btn btn-danger btn-sm" id="delete_R${rowIdx}"><i class="fas fa-trash-alt"></i></a>
             </div>  
@@ -239,4 +197,12 @@ $('#showUserInfoEdit').on('click', function(event){
 })
 
 
-    
+//sidebar - when sidebar is expanded and main content is clicked - hide sidebar
+$('.overlay').on('click', function() {
+    let overlay = document.querySelector('.overlay');
+    let navigation = document.querySelector('.navigation');
+    let toggle = document.querySelector('.toggle');
+    navigation.classList.remove('active');
+    toggle.classList.remove('active');
+    overlay.classList.remove('active');
+});

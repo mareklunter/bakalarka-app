@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
 
@@ -27,41 +27,43 @@
         </div>
     </div>
 
-    <table class="table table-bordered table-sm" id="shift-table">
-        <thead>
-            <tr class="bg-dark text-white">
-                <th scope="col">Zamestnanec</th>
-                @foreach ($week as $day)
-                    <th scope="col">{{ $day->format('d.m') }}</th>
-                @endforeach
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach ($employees as $employee)
-                <tr>
-                    <th>{{ $employee->firstName . ' ' . $employee->lastName }}</th>
-
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm" id="shift-table">
+            <thead>
+                <tr class="bg-dark text-white">
+                    <th scope="col">Zamestnanec</th>
                     @foreach ($week as $day)
-                        @if ($shift = $employee->haveShift($day))
-                            <td class="green">
-                                <form action="{{ route('shifts.destroy', $shift) }}"
-                                    onsubmit="return confirm('Are you sure?');" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn"> {{ $shift->description ?? '...' }} </button>
-                                </form>
-                            </td>
-                        @else
-                            <td class="grey">
-                                {{-- blank --}}
-                            </td>
-                        @endif
+                        <th scope="col">{{ $day->format('d.m') }}</th>
                     @endforeach
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+    
+            <tbody>
+                @foreach ($employees as $employee)
+                    <tr>
+                        <th>{{ $employee->firstName . ' ' . $employee->lastName }}</th>
+    
+                        @foreach ($week as $day)
+                            @if ($shift = $employee->haveShift($day))
+                                <td class="green">
+                                    <form action="{{ route('shifts.destroy', $shift) }}"
+                                        onsubmit="return confirm('Are you sure?');" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn"> {{ $shift->description ?? '...' }} </button>
+                                    </form>
+                                </td>
+                            @else
+                                <td class="grey">
+                                    {{-- blank --}}
+                                </td>
+                            @endif
+                        @endforeach
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     <span class="hint">Kliknutím na políčko smeny sa zruší.</span>
 
     <div class="box box-big col col-md-10 col-lg-8 mt-4">
@@ -74,8 +76,7 @@
                     <label class="input-group-text" for="employee_id">Zamestnanec</label>
                 </div>
     
-                <select class="form-control" data-live-search="true" id="employee_id" name="employee_id" required>
-                    <option disabled selected> -- vyber zamestnanca -- </option>
+                <select class="form-control" data-size="5" title="-- vyber zamestnanca --" data-live-search="true" id="employee_id" name="employee_id" required>
                     @foreach ($employees as $employee)
                         <option value="{{ $employee->id }}">{{ $employee->firstName . ' ' . $employee->lastName }}</option>
                     @endforeach

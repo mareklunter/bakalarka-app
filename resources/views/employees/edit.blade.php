@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 
 @section('content')
@@ -43,7 +43,7 @@
                     <label class="input-group-text" for="workPosition">Pracovná pozícia</label>
                 </div>
 
-                <select class="form-control" data-live-search="true" id="workPosition" name="workPosition">
+                <select class="form-control" data-live-search="true" data-size="5" id="workPosition" name="workPosition">
                     @foreach ($workPositions as $position)
                         @if ($position->id == $employee->work_position_id)
                             {{-- options are not-trashed positions except for already ordered item which was trashed --}}

@@ -135,6 +135,10 @@ fieldset {
   margin-bottom: 0;
 }
 
+#orderForm input {
+  min-width: 80px;
+}
+
 .chart-box {
   margin-bottom: 50px;
   font-size: 14px;
@@ -241,7 +245,15 @@ fieldset {
   font-weight: bolder;
 }
 
-@media (max-width: 768px) {
+.card {
+  text-align: left;
+}
+
+.header-logo {
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
   .table-box {
     width: 33%;
     margin: 0 0.16% 15px;
@@ -259,79 +271,129 @@ fieldset {
   }
 }
 
-#body-row {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-#sidebar-container {
-  min-height: 100vh;
-  background-color: #333;
-  padding: 0;
-}
-
-/* Sidebar sizes when expanded and expanded */
-
-.sidebar-expanded {
-  width: 230px;
-}
-
-.sidebar-collapsed {
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 60px;
+  height: 100%;
+  background: #333;
+  transition: 0.5s;
+  overflow: hidden;
+  z-index: 99;
 }
 
-/* Menu item*/
-
-#sidebar-container .list-group a {
-  height: 50px;
-  color: white;
+.navigation:hover,
+.navigation.active {
+  width: 300px;
 }
 
-/* Submenu item*/
-
-#sidebar-container .list-group .sidebar-submenu a {
-  height: 45px;
-  padding-left: 30px;
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
-.sidebar-submenu {
-  font-size: 0.9rem;
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
 }
 
-/* Separators */
-
-.sidebar-separator-title {
-  background-color: #333;
-  height: 35px;
+.navigation ul li:hover {
+  background: #595959;
 }
 
-.sidebar-separator {
-  background-color: #333;
-  height: 25px;
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: whitesmoke;
 }
 
-.logo-separator {
-  background-color: #333;
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
   height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 24px;
 }
 
-/* Closed submenu icon */
-
-#sidebar-container .list-group .list-group-item[aria-expanded=false] .submenu-icon::after {
-  content: " \F0D7";
-  font-family: FontAwesome;
-  display: inline;
-  text-align: right;
-  padding-left: 10px;
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
 }
 
-/* Opened submenu icon */
+.toggle {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 56px;
+  height: 56px;
+  background: #333;
+  cursor: pointer;
+  z-index: 99;
+}
 
-#sidebar-container .list-group .list-group-item[aria-expanded=true] .submenu-icon::after {
-  content: " \F0DA";
-  font-family: FontAwesome;
-  display: inline;
-  text-align: right;
-  padding-left: 10px;
+.toggle.active {
+  background: #942b2b;
+}
+
+.toggle::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\F0C9";
+  width: 100%;
+  height: 100%;
+  line-height: 60px;
+  text-align: center;
+  font-size: 24px;
+  color: whitesmoke;
+}
+
+.toggle.active::before {
+  content: "\F00D";
+}
+
+body.active {
+  background: rgba(51, 51, 51, 0.4);
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.overlay.active {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .navigation {
+    left: -60px;
+  }
+
+  .navigation.active {
+    left: 0;
+    width: 60%;
+  }
 }
 

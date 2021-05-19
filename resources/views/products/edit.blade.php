@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 
 @section('content')
@@ -42,7 +42,7 @@
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="category">Kategória</label>
                 </div>
-                <select class="form-control" data-live-search="true" id="category" name="category">
+                <select class="form-control" data-size="5" data-live-search="true" id="category" name="category">
 
                     @foreach ($productCategories as $category)
                         @if ($category->id == $product->product_category_id)

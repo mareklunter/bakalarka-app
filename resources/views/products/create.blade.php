@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 
 @section('content')
@@ -42,7 +42,7 @@
                     <label class="input-group-text" for="category">Kategória</label>
                 </div>
 
-                <select class="form-control" data-live-search="true" id="category" name="category">
+                <select class="form-control" data-size="5" title="-- vyber kategóriu --" data-live-search="true" id="category" name="category" required>
                     @foreach ($productCategories as $category)
                         <option value="{{ $category->id }}">{{ $category->categoryName }}</option>
                     @endforeach

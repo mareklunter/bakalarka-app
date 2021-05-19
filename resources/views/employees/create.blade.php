@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 
 @section('content')
@@ -41,8 +41,7 @@
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="workPosition">Pozícia</label>
                 </div>
-                <select class="form-control" data-live-search="true" id="workPosition" name="workPosition">
-                    <option disabled selected> -- vyber pozíciu -- </option>
+                <select class="form-control" title="-- vyber pozíciu --" data-size="5" data-live-search="true" id="workPosition" name="workPosition">
                     @foreach ($workPositions as $position)
                         <option value="{{ $position->id }}">{{ $position->positionName }}</option>
                     @endforeach
