@@ -33,19 +33,19 @@
                 <fieldset class="form-control" disabled>{{ $user->email }}</fieldset>
             </div>
 
-            {{-- <div class="input-group mb-3">
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Názov</span>
+                    <span class="input-group-text">Adresa</span>
                 </div>
                 <input type="text" class="form-control" name="address" value="{{ $user->address }}" required>
-            </div> --}}
+            </div>
 
-            {{-- <div class="input-group mb-3">
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Názov</span>
+                    <span class="input-group-text">Tel. číslo</span>
                 </div>
                 <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" required>
-            </div> --}}
+            </div>
             
             <button class="btn btn-primary mb-2" type="submit">Uložiť</button>
         </form>

@@ -42,7 +42,7 @@
                     <label class="input-group-text" for="category">Kategória</label>
                 </div>
 
-                <select class="form-control" data-size="5" title="-- vyber kategóriu --" data-live-search="true" id="category" name="category" required>
+                <select class="form-control" data-size="5" title="nepovinné" data-live-search="true" id="category" name="category">
                     @foreach ($productCategories as $category)
                         <option value="{{ $category->id }}">{{ $category->categoryName }}</option>
                     @endforeach

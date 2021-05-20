@@ -47,6 +47,11 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
+        $tableOrders = $table->orders->all();
+        foreach ($tableOrders as $tableOrder) {
+            $tableOrder->table_id = null;
+            $tableOrder->save();
+        }
         $table->delete();
 
         return back();

@@ -30,6 +30,14 @@
             </thead>
 
             <tbody>
+                @if ($workPositions->isEmpty())
+                    <tr>
+                        <td colspan="2">
+                            Zatiaľ neboli pridané žiadne prac. pozície.
+                        </td>
+                    </tr>
+                @endif
+
                 @foreach ($workPositions as $position)
                     <tr>
                         <td>{{ $position->positionName }}</td>

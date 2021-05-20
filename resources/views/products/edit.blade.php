@@ -42,11 +42,9 @@
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="category">Kategória</label>
                 </div>
-                <select class="form-control" data-size="5" data-live-search="true" id="category" name="category">
-
+                <select class="form-control" data-size="5" title="nepovinné" data-live-search="true" id="category" name="category">
                     @foreach ($productCategories as $category)
                         @if ($category->id == $product->product_category_id)
-
                             @if ($category->trashed())
                                 <option value="{{ $category->id }}" disabled selected>{{ $category->categoryName }}
                                 </option>
@@ -58,7 +56,6 @@
                             <option value="{{ $category->id }}">{{ $category->categoryName }}</option>
                         @endif
                     @endforeach
-
                 </select>
             </div>
 

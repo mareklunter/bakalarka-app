@@ -40,7 +40,7 @@ class ProductController extends Controller
         $this->validate($request, [
             'name'          => "required|max:50|unique:products,name,NULL,id,deleted_at,NULL,user_id,$user_id",
             'price'         => 'required',
-            'category'      => 'required',
+            'category'      => 'nullable',
             'description'   => 'nullable'
         ]);
 
@@ -93,9 +93,9 @@ class ProductController extends Controller
         $this->authorize('update', $product);
         
         $this->validate($request, [
-            'name'          => 'required|max:50|unique:products,name,NULL,id,deleted_at,NULL',
+            'name'          => "required|max:50|unique:products,name,$product->id,id,deleted_at,NULL",
             'price'         => 'required',
-            'category'      => 'required',
+            'category'      => 'nullable',
             'description'   => 'nullable'
         ]);
         

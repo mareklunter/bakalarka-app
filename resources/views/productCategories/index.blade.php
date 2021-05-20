@@ -29,6 +29,14 @@
             </thead>
 
             <tbody>
+                @if ($productCategories->isEmpty())
+                    <tr>
+                        <td colspan="2">
+                            Zatiaľ neboli vytvorené žiadne kategórie produktov.
+                        </td>
+                    </tr>
+                @endif
+
                 @foreach ($productCategories as $category)
                     <tr>
                         <td>{{ $category->categoryName }}</td>

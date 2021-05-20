@@ -37,13 +37,22 @@
                     @endforeach
                 </tr>
             </thead>
-    
+
             <tbody>
+                @if ($employees->isEmpty())
+                    <tr>
+                        <td colspan="8">
+                            Zatiaľ neboli pridaný žiadny zamestnanci.
+                        </td>
+                    </tr>
+                @endif
                 @foreach ($employees as $employee)
                     <tr>
                         <th>{{ $employee->firstName . ' ' . $employee->lastName }}</th>
-    
+
                         @foreach ($week as $day)
+                            <?php $haveShift = true; ?>
+
                             @if ($shift = $employee->haveShift($day))
                                 <td class="green">
                                     <form action="{{ route('shifts.destroy', $shift) }}"
@@ -75,14 +84,16 @@
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="employee_id">Zamestnanec</label>
                 </div>
-    
-                <select class="form-control" data-size="5" title="-- vyber zamestnanca --" data-live-search="true" id="employee_id" name="employee_id" required>
+
+                <select class="form-control" data-size="5" title="-- vyber zamestnanca --" data-live-search="true"
+                    id="employee_id" name="employee_id" required>
                     @foreach ($employees as $employee)
-                        <option value="{{ $employee->id }}">{{ $employee->firstName . ' ' . $employee->lastName }}</option>
+                        <option value="{{ $employee->id }}">{{ $employee->firstName . ' ' . $employee->lastName }}
+                        </option>
                     @endforeach
                 </select>
             </div>
-    
+
             <div class="input-group mb-4">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Od</span>
@@ -90,21 +101,21 @@
                 <input type="date" class="form-control" min="{{ $startWeek->format('Y-m-d') }}" name="startDate"
                     id="startDate" required>
             </div>
-    
+
             <div class="input-group mb-4">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Do</span>
                 </div>
                 <input type="date" class="form-control" name="endDate" id="endDate" required>
             </div>
-    
+
             <div class="input-group mb-4">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Popis</span>
                 </div>
                 <input type="text" class="form-control" maxlength="15" name="description" id="description">
             </div>
-    
+
             <button type="submit" class="btn btn-primary">Potvrdiť</button>
         </form>
     </div>

@@ -43,12 +43,12 @@ class UserController extends Controller
         } else {
             $this->validate($request, [
                 'name'    => 'required',
-                // 'adress'  => 'required',
-                // 'phone'   => 'nullable'
+                'address'  => 'required',
+                'phone'   => 'nullable'
             ]);
             $user->name = $request->name;
-            // $user->address = $request->address;
-            // $user->phone = $request->phone;
+            $user->address = $request->address;
+            $user->phone = $request->phone;
         }
 
         $user->save();

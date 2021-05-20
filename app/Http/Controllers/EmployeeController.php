@@ -43,7 +43,7 @@ class EmployeeController extends Controller
             'firstName'     => 'required|max:20',
             'lastName'      => 'required|max:20',
             'workPosition'  => 'required',
-            'salary'        => 'required',
+            'phone'         => 'required',
             'employedSince' => 'required',
         ]);
 
@@ -51,7 +51,7 @@ class EmployeeController extends Controller
             'firstName'         => $request->firstName,
             'lastName'          => $request->lastName,
             'work_position_id'  => $request->workPosition,
-            'salary'            => $request->salary,
+            'phone'             => $request->phone,
             'employed_since'    => $request->employedSince
         ]);
 
@@ -85,14 +85,14 @@ class EmployeeController extends Controller
             'firstName'     => 'required|max:20',
             'lastName'      => 'required|max:20',
             'workPosition'  => 'required',
-            'salary'        => 'required',
+            'phone'        => 'required',
             'employedSince' => 'required',
         ]);
 
         $employee->firstName         = $request->firstName;
         $employee->lastName          = $request->lastName;
         $employee->work_position_id  = $request->workPosition;
-        $employee->salary            = $request->salary;
+        $employee->phone             = $request->phone;
         $employee->employed_since    = $request->employedSince;
 
         $employee->save();

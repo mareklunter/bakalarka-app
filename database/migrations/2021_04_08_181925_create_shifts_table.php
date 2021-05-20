@@ -29,6 +29,9 @@ class CreateShiftsTable extends Migration
      */
     public function down()
     {
+        Schema::table('shifts', function (Blueprint $table) {
+            $table->dropForeign('employee_id');
+        });
         Schema::dropIfExists('shifts');
     }
 }

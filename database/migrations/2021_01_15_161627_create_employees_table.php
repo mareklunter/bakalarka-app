@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('firstName',20);
             $table->string('lastName',20);
-            $table->foreignId('work_position_id')->constrained();
+            $table->foreignId('work_position_id')->nullable()->constrained();
             $table->string('phone', 15)->nullable();
             $table->timestamps();
         });
@@ -31,6 +31,10 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
+        Schema::table('employees', function (Blueprint $table) {
+            $table->dropForeign('user_id');
+            $table->dropForeign('work_position_id');
+        });
         Schema::dropIfExists('employees');
     }
 }

@@ -50,9 +50,9 @@
 
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Plat</span>
+                    <span class="input-group-text">Tel. číslo</span>
                 </div>
-                <input type="number" step="0.01" min="0" class="form-control" name="salary" id="salary" required>
+                <input type="string" step="0.01" min="0" class="form-control" name="phone" id="phone" required>
             </div>
 
             <div class="from-group mb-4">

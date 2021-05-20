@@ -18,6 +18,14 @@
             </thead>
 
             <tbody>
+                @if ($employees->isEmpty())
+                    <tr>
+                        <td colspan="5">
+                            Zatiaľ neboli pridaný žiadny zamestnanci.
+                        </td>
+                    </tr>
+                @endif
+
 
                 @foreach ($employees as $employee)
                     <tr>

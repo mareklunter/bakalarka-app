@@ -37,7 +37,7 @@
                     @foreach ($order_items as $product_id => $amount)
                         <tr id="R{{ $index }}">
                             <td>
-                                <select class="form-control product" data-container="#R{{ $index }}" data-size="5" title="-- vyber produkt --" data-live-search="true" name="product[]">
+                                <select class="form-control product" data-container="body" data-size="5" title="-- vyber produkt --" data-live-search="true" name="product[]">
                                     @foreach ($products as $product)
                                         @if ($product->id == $product_id)
                                         {{-- options are not-trashed products except for already ordered item which was trashed --}}

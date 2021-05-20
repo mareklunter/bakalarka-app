@@ -278,6 +278,12 @@ fieldset {
   }
 }
 
+@media (min-width: 572px) {
+  .table-responsive {
+    overflow: visible;
+  }
+}
+
 @media (max-width: 571px) {
   .table-box {
     width: 49.5%;

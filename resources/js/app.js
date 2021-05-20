@@ -78,7 +78,7 @@ $('#addToOrder').on('click', function(event) {
     `
     <tr id="R${rowIdx}">
         <td>
-            <select class="form-control product"  data-container="#R${rowIdx}" data-size="5" title="-- vyber produkt --" data-live-search="true"  name="product[]">
+            <select class="form-control product"  data-container="body" data-size="5" title="-- vyber produkt --" data-live-search="true"  name="product[]">
             
             </select>
         </td>

@@ -28,6 +28,9 @@ class CreateWorkPositionsTable extends Migration
      */
     public function down()
     {
+        Schema::table('work_positions', function (Blueprint $table) {
+            $table->dropForeign('user_id');
+        });
         Schema::dropIfExists('work_positions');
     }
 }

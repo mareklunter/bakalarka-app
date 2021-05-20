@@ -16,11 +16,19 @@
             </thead>
 
             <tbody>
+                @if ($products->isEmpty())
+                    <tr>
+                        <td colspan="4">
+                            Zatiaľ neboli vytvorené žiadne produkty.
+                        </td>
+                    </tr>
+                @endif
+
                 @foreach ($products as $product)
                     <tr>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->price }}</td>
-                        <td>{{ $product->productCategory()->withTrashed()->get()->first()->categoryName }}</td>
+                        <td>{{ $product->productCategory()->withTrashed()->get()->first()->categoryName ?? 'žiadna' }}</td>
 
                         <td class="actions-2">
                             <a href="{{ route('products.edit', $product) }}" class="btn btn-primary btn-sm"><i
@@ -45,7 +53,7 @@
             <a href="{{ route('products.create') }}" class="btn btn-primary">Nový produkt</a>
             <a href="{{ route('productCategories.index') }}" class="btn btn-info">Kategórie</a>
         </div>
-        
+
         <div class="mt-3 mt-md-0">
             {!! $products->appends(\Request::except('page'))->render() !!}
         </div>

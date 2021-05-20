@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name', 50);
             $table->decimal('price', 4, 2); 
-            $table->foreignId('product_category_id')->constrained();
+            $table->foreignId('product_category_id')->nullable()->constrained();
             $table->string('description')->nullable();
             $table->timestamps();
         });
@@ -31,6 +31,10 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign('user_id');
+            $table->dropForeign('product_category_id');
+        });
         Schema::dropIfExists('products');
     }
 }

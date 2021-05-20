@@ -38,7 +38,7 @@
                 <tbody>
                     <tr id="R0">
                         <td>
-                            <select class="form-control product"  data-container="#R0" data-size="5" title="-- vyber produkt --" data-live-search="true" name="product[]">
+                            <select class="form-control product"  data-container="body" data-size="5" title="-- vyber produkt --" data-live-search="true" name="product[]">
                                 @foreach ($products as $product)
                                     <option value="{{ $product->id }}" data-price="{{ $product->price }}">
                                         {{ $product->name }}</option>

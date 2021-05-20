@@ -63,10 +63,10 @@
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Plat</span>
+                    <span class="input-group-text">Tel. číslo</span>
                 </div>
-                <input type="number" step="0.01" min="0" class="form-control" name="salary" id="salary"
-                    value="{{ $employee->salary }}" required>
+                <input type="string" step="0.01" min="0" class="form-control" name="phone" id="phone"
+                    value="{{ $employee->phone }}" required>
             </div>
 
             <div class="input-group mb-3">
