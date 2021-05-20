@@ -94,6 +94,10 @@ fieldset {
     text-align: left;
 }
 
+.custom-container {
+    margin: 0 80px 0 140px;
+}
+
 
 //users
 #userPassEdit {
@@ -254,6 +258,13 @@ fieldset {
 
 
 //mediaQueries
+@media (max-width: $lg) {
+    .custom-container {
+        margin: 0 20px 0 80px;
+    }
+}
+
+
 @media (max-width: $md) {
     .table-box {
         width: 33%;
@@ -263,11 +274,22 @@ fieldset {
             padding: .15rem .3rem
         }
     }
+
+    .custom-container {
+        margin: 0 0 ;
+    }
 }
 
 @media (max-width: $sm) {
     .table-box {
         width: 49.5%;
         margin: 0 .25% 15px;
+    }
+
+    .btn-group>.btn {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem;
     }
 }

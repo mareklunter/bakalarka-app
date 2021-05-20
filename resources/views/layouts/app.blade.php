@@ -38,21 +38,18 @@
     </header>
 
 
-    <!-- Bootstrap row -->
-    <div>
-        <div>
-            @auth
-                @include('layouts.sidebar')
-            @endauth
-        </div>
-        <!-- MAIN -->
-        <main>
+    <main>
+        @auth
+            @include('layouts.sidebar')
+        @endauth
+        
+        <div class="custom-container">
             <div class="p-3">
                 @yield('content')
             </div>
-        </main><!-- Main Col END -->
+        </div>
+    </main>
 
-    </div><!-- body-row END -->
 
 </body>
 

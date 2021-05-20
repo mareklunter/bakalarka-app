@@ -15,6 +15,7 @@
     }
 
     ul {
+        padding-top: 60px;
         position: absolute;
         top: 0;
         left: 0;
@@ -123,6 +124,6 @@ body.active {
     }
     .navigation.active {
          left: 0;
-         width: 60%;
+         width: 70%;
     }
 }

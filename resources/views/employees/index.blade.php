@@ -47,7 +47,8 @@
     </div>
 
     <div class="d-flex flex-column flex-md-row align-items-center justify-content-md-between" id="periodButtons">
-        <div class="d-flex justify-content-between flex-column flex-sm-row mt-2">
+        {{-- <div class="d-flex justify-content-between flex-column flex-sm-row mt-2"> --}}
+        <div class="btn-group">
             <a href="{{ route('shifts.index') }}" class="btn btn-primary mt-1 mt-sm-1">Smeny</a>
             <a href="{{ route('employees.create') }}" class="btn btn-info mt-1 mt-sm-1">Nový zamestnanec</a>
             <a href="{{ route('workPositions.index') }}" class="btn btn-warning mt-1 mt-sm-1">Pracovné pozície</a>

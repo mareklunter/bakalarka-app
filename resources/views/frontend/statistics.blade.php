@@ -6,7 +6,6 @@
     <h1>Štatistiky</h1>
     
     <div class="row justify-content-center" id="charts-wrapper">
- 
         <div class="chart-box col-11 col-lg-5">
             <div class="m-1" id="salesChart" style="height: 300px;"></div>
 
@@ -28,7 +27,6 @@
                 <a href="{{ route('ordersChartUpdate', 'all') }}" class="btn btn-success">Celé obdobie</a>
             </div>
         </div>
-
     </div>
 
     <script>
