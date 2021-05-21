@@ -36,7 +36,6 @@ class Employee extends Model
     
     public function haveShift($day) {
         $shift = $this->shifts()->whereDate('startDate', '<=', $day)->whereDate('endDate', '>=', $day)->first();
-        // dd($shift->description);
         if ( $shift ) {
             return $shift;
         }

@@ -34,7 +34,7 @@ class ShiftController extends Controller
         //delete old shifts(before current week)
         foreach ($employees as $employee) {
             foreach ($employee->shifts as $shift) {
-                if ($shift->endDate < $startWeek) {
+                if ($shift->endDate < Carbon::now()->startOfWeek()) {
                     $this->destroy($shift);
                 }
             }

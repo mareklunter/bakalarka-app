@@ -39,7 +39,6 @@ Route::middleware(['auth'])->group(function() {
     ]);
     Route::get('/shifts/{week?}/{action?}', 'ShiftController@index')->name('shifts.index');
 
-
     // frontend pages
     Route::get('/', 'FrontendController@dashboard')->name('dashboard');
     Route::get('/statistics', 'FrontendController@statistics')->name('statistics');
@@ -48,3 +47,6 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/salesChartUpdate/{timePeriod?}', 'ChartController@salesChartUpdate')->name('salesChartUpdate');
     Route::get('/ordersChartUpdate/{timePeriod?}', 'ChartController@ordersChartUpdate')->name('ordersChartUpdate');
 });
+
+ //verification
+ Route::get('/verify/{code}', 'Auth\RegisterController@verifyUser')->name('verify.user');
