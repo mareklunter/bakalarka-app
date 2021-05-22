@@ -214,9 +214,11 @@ fieldset {
 
 //dashboard
 .dashboard-box {
+    position: relative;
     text-align: left;
-    padding: clamp(1rem, 4vw, 1.5rem) clamp(1rem, 3vw, 2.5rem);
-    margin-bottom: .8rem;
+    padding: clamp(.5rem, 4vw, 1.5rem) clamp(.5rem, 3vw, 2.5rem);
+    font-size: clamp(.8rem, 3vw, 1rem) ;
+    margin-bottom: .9rem;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -232,7 +234,20 @@ fieldset {
     }
 
     &.box-yellow {
-        background: #fcbf49;
+        background: #ffbe44;
+    }
+    
+    &.box-yellow1 {
+        background: #f5b025;
+    }
+    
+    &.box-yellow2 {
+        background: #fa993e;
+    }
+
+    &.box-purple {
+        background: #542e71;
+        color: whitesmoke;
     }
 
     .info-row {
@@ -240,8 +255,21 @@ fieldset {
     }
 
     .big {
-        font-size: clamp(1.6rem, 3vw, 3rem);
+        font-size: clamp(1.4rem, 3vw, 3rem);
         font-weight: bolder;
+    }
+
+    .time-head {
+        display: inline-block;
+        background-color: #333;
+        box-shadow: 1px 1px 3px 1px rgba(51, 51, 51, 0.5);
+        padding: 1px 6px;
+        color: whitesmoke;
+        font-weight: bolder;
+        font-size: clamp(.9rem, 3vw, 1.1rem) ;
+        position: absolute;
+        top: -5px;
+        left: 50px;
     }
 
 }

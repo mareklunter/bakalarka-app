@@ -2,6 +2,24 @@ require('./bootstrap');
 require('bootstrap-select'); //live search for selects - npm-modules
 
 
+// https://www.cssscript.com/event-calendar-color/
+import Calendar from 'color-calendar';
+
+if ( $('#color-calendar').length > 0 ) {
+    new Calendar({
+        id: '#color-calendar',
+    
+        // short | long-lower | long-upper
+        weekdayDisplayType: 'long-lower',
+    
+        // short | long
+        monthDisplayType: 'long',
+        // 0 (Sun)
+        startWeekday: 1,
+    })
+}
+
+
 /**
  * add listener to given row for price refreshing when creting order
  */
@@ -16,12 +34,12 @@ function updateOrderPrice() {
 }
 
 function updateRowPrices(row) {
-    $(row).on('change', function(){
+    $(row).on('change', function () {
         let selOption = $(row).find('option:selected');
         let amount = $(row).find('.amount').val();
 
         $(row).find('.price').val(selOption.data('price'));
-        $(row).find('.totalPrice').val((selOption.data('price')*amount).toFixed(2));
+        $(row).find('.totalPrice').val((selOption.data('price') * amount).toFixed(2));
 
         updateOrderPrice();
     });
@@ -32,8 +50,8 @@ function updateRowPrices(row) {
  * add listener to given row for enabling 'amount' input when product is choosed
  */
 function enableAmount(row) {
-    row.find('.product').on('change', function() {
-        row.find('.amount').prop( "disabled", false);
+    row.find('.product').on('change', function () {
+        row.find('.amount').prop("disabled", false);
     });
 }
 
@@ -42,23 +60,23 @@ function enableAmount(row) {
  * add deleting functionality to given delete link on row[rowIndx]  
  */
 function deleteRow(rowIdx) {
-    $('#delete_R'+rowIdx).on('click', function(event) {
+    $('#delete_R' + rowIdx).on('click', function (event) {
         event.preventDefault();
 
-        let row = $('#R'+rowIdx);
+        let row = $('#R' + rowIdx);
         row.remove();
 
         updateOrderPrice();
     });
-} 
+}
 
 
 /**
  * add event listeners to all rows when page is loaded
- */ 
+ */
 var orderRows = $('tbody').find('tr');
 
-orderRows.each(function(index, value) {
+orderRows.each(function (index, value) {
     updateRowPrices($(value));
     enableAmount($(value));
     deleteRow(index);
@@ -71,12 +89,12 @@ orderRows.each(function(index, value) {
 var rowIdx = orderRows.toArray().length; //set index to last row + 1
 var table = $("#orderTable").find('tbody');
 
-$('#addToOrder').on('click', function(event) {
+$('#addToOrder').on('click', function (event) {
     event.preventDefault();
 
     table.append(
-    `
-    <tr id="R${rowIdx}">
+        `
+    <tr id="R${rowIdx}"> 
         <td>
             <select class="form-control product"  data-container="body" data-size="5" title="-- vyber produkt --" data-live-search="true"  name="product[]">
             
@@ -107,26 +125,26 @@ $('#addToOrder').on('click', function(event) {
             </div>  
         </td>
     </tr>
-    `); 
+    `);
 
     //add options to product select
-    var select = $('#R'+rowIdx).find('.product');
-    
-    $('#productOpt option').each(function(){
+    var select = $('#R' + rowIdx).find('.product');
+
+    $('#productOpt option').each(function () {
         var option = this;
         select.append(option.outerHTML);
     });
 
     //add live search to select
     select.selectpicker();
-    
+
 
     //add event listener for delete button to the new row
     deleteRow(rowIdx);
 
-    
-    var row = $('#R'+rowIdx);
-    
+
+    var row = $('#R' + rowIdx);
+
     //add event listener for price refreshing to the new row
     updateRowPrices(row);
 
@@ -138,7 +156,7 @@ $('#addToOrder').on('click', function(event) {
 
 
 //update order price when form submitted
-$('#orderForm').on('submit', function(){
+$('#orderForm').on('submit', function () {
     updateOrderPrice();
 });
 
@@ -149,48 +167,48 @@ $(function () {
 
 
 //charts time period updating
-$('#charts-wrapper').on('click', 'a', function(e) {
-    if ( this.parentElement.dataset.chart == 'salesChart' ) {
+$('#charts-wrapper').on('click', 'a', function (e) {
+    if (this.parentElement.dataset.chart == 'salesChart') {
         var editChart = salesChart;
-    } else if ( this.parentElement.dataset.chart == 'ordersChart' ) {
+    } else if (this.parentElement.dataset.chart == 'ordersChart') {
         var editChart = ordersChart;
     };
-    
+
     $.ajax({
         url: $(this).attr("href"),
         type: 'GET',
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             editChart.chart.data.labels = data.labels;
             editChart.chart.data.datasets[0].data = data.data;
             editChart.chart.update();
         },
-        error: function(data) {
+        error: function (data) {
             console.log('ajax error: ' + data);
         }
     });
 
     let groupButtons = $(this).parent().find('a');
     groupButtons.removeClass('active');
-    $(this).addClass('active'); 
+    $(this).addClass('active');
 
     e.preventDefault();
 })
 
 //show-hide order details
-$('#orderList').on('click', '.orderDetails', function(event) {
+$('#orderList').on('click', '.orderDetails', function (event) {
     $(this).closest('tr').next().toggle();
     event.preventDefault();
 });
 
 
-$('#showUserPassEdit').on('click', function(event){
+$('#showUserPassEdit').on('click', function (event) {
     $('#userInfoEdit').hide();
     $('#userPassEdit').show();
     event.preventDefault();
 })
 
-$('#showUserInfoEdit').on('click', function(event){
+$('#showUserInfoEdit').on('click', function (event) {
     $('#userInfoEdit').show();
     $('#userPassEdit').hide();
     event.preventDefault();
@@ -198,7 +216,7 @@ $('#showUserInfoEdit').on('click', function(event){
 
 
 //sidebar - when sidebar is expanded and main content is clicked - hide sidebar
-$('.overlay').on('click', function() {
+$('.overlay').on('click', function () {
     let overlay = document.querySelector('.overlay');
     let navigation = document.querySelector('.navigation');
     let toggle = document.querySelector('.toggle');

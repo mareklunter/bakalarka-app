@@ -9,7 +9,7 @@ class FrontendController extends Controller
 {
     public function dashboard() {
         $oneHourLimit = Carbon::now()->subHour();
-        $orderLimitCount = auth()->user()->orders()->where('created_at', '<' , $oneHourLimit)->count();
+        $orderLimitCount = auth()->user()->orders->where('created_at', '<' , $oneHourLimit)->count();
  
         $today = Carbon::today();
         $employees = auth()->user()->employees;
@@ -25,15 +25,21 @@ class FrontendController extends Controller
                 }
             };
         }
-        
-        $salesToday = auth()->user()->orders()->where('created_at', '>', $today)->sum('price');
-        $ordersToday = auth()->user()->orders()->where('created_at', '>', $today)->count();
+        // dd(auth()->user()->tables->where('occupied', '=', 'false')->count());
+        $freeTables = auth()->user()->tables->where('occupied', '=', 'false')->count();
+        $ordersToday = auth()->user()->orders->where('created_at', '>', $today)->count();
+        $salesToday = auth()->user()->orders->where('created_at', '>', $today)->sum('price');
+        $salesYesterday = auth()->user()->orders->where('created_at', '>', Carbon::yesterday())->where('created_at', '<', $today)->sum('price');
+        $salesWeek = auth()->user()->orders->where('created_at', '>', Carbon::now()->sub('7days'))->where('created_at', '<', Carbon::now())->sum('price');
 
         return view('frontend.dashboard', [
             'orderLimitCount'   => $orderLimitCount,
             'emplToday'         => $emplToday,
+            'ordersToday'       => $ordersToday,
+            'freeTables'        => $freeTables,
             'salesToday'        => $salesToday,
-            'ordersToday'       => $ordersToday
+            'salesYesterday'    => $salesYesterday,
+            'salesWeek'         => $salesWeek
         ]);
     }
 
