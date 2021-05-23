@@ -131,6 +131,14 @@ fieldset {
     }
 }
 
+#modal-bill {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+}
+
 //statistics
 .chart-box {
     margin-bottom: 50px; 
@@ -275,7 +283,6 @@ fieldset {
 }
 
 
-
 //login-register card
 .card {
     text-align: left;
@@ -285,6 +292,8 @@ fieldset {
 .header-logo {
     margin: 0 auto;
 }
+
+
 
 
 //mediaQueries

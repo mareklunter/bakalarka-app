@@ -18,7 +18,7 @@
                     <th scope="col"><i class="fas fa-info"></i></th>
                 </tr>
             </thead>
-    
+
             <tbody>
                 @if ($orders->isEmpty())
                     <tr>
@@ -27,7 +27,7 @@
                         </td>
                     </tr>
                 @endif
-    
+
                 @foreach ($orders as $order)
                     <tr>
                         <th scope="row"> <a class="btn btn-sm btn-link orderDetails" href="#">{{ $order->id }}</a> </th>
@@ -41,7 +41,7 @@
                                 <span class="badge badge-danger">Nezaplatené</span>
                             @endif
                         </td>
-    
+
                         <td class="actions-3">
                             @if (!$order->paid)
                                 <a href="{{ route('orders.edit', $order) }}" class="btn btn-primary btn-sm"><i
@@ -49,11 +49,10 @@
                             @else
                                 <fieldset class="btn btn-secondary btn-sm" disabled><i class="far fa-edit"></i></fieldset>
                             @endif
-    
-                            <a href="{{ route('orders.pay', $order) }}" class="btn btn-info btn-sm"><i
-                                    class="fas fa-money-check-alt"></i></a>
-    
-    
+
+                            <a href="{{ route('orders.bill', $order) }}" class="btn btn-info btn-sm getBill">
+                                <i class="fas fa-money-check-alt"></i>
+                            </a>
                             @if (!$order->paid)
                                 <form action="{{ route('orders.destroy', $order) }}"
                                     onsubmit="return confirm('Are you sure?');" method="POST">
@@ -63,20 +62,23 @@
                                             class="fas fa-trash-alt"></i></button>
                                 </form>
                             @else
-                                <fieldset class="btn btn-secondary btn-sm" disabled><i class="fas fa-trash-alt"></i></fieldset>
+                                <fieldset class="btn btn-secondary btn-sm" disabled><i class="fas fa-trash-alt"></i>
+                                </fieldset>
                             @endif
-    
+
                         </td>
                     </tr>
-    
+
                     <tr class="orderDetailsDiv">
                         <td colspan="12">
                             @if ($order->table)
-                                <strong><p>{{ $order->table->tag }}</p></strong>
+                                <strong>
+                                    <p>{{ $order->table->tag }}</p>
+                                </strong>
                             @else
                                 <p>Žiaden stôl</p>
                             @endif
-    
+
                             @foreach ($order->products()->withTrashed()->get() as $product)
                                 <p>{{ $product->name }}: {{ $product->price }}€</p>
                             @endforeach
@@ -84,7 +86,11 @@
                     </tr>
                 @endforeach
             </tbody>
-        </table> 
+        </table>
+    </div>
+
+    <div id="modal-bill" class="box box-big">
+
     </div>
 
     <div class="d-flex flex-column flex-md-row align-items-center justify-content-md-between" id="periodButtons">
@@ -97,7 +103,8 @@
             <a href="{{ route('orders.index', 'month') }}"
                 class="btn btn-outline-primary timePeriodBtn {{ request()->is('orders/month') ? 'active' : '' }}">Mesiac</a>
             <a href="{{ route('orders.index', 'all') }}"
-                class="btn btn-outline-primary timePeriodBtn {{ request()->is('orders/all') ? 'active' : '' }}">Celé obdobie</a>
+                class="btn btn-outline-primary timePeriodBtn {{ request()->is('orders/all') ? 'active' : '' }}">Celé
+                obdobie</a>
         </div>
 
         {{-- Paginations-kyslik --}}

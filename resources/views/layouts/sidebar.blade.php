@@ -8,15 +8,15 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('tables.index') }}">
-                    <span class="icon"><i class="fas fa-user-friends" aria-hidden="true"></i></span>
-                    <span class="title">Obsadenosť</span>
-                </a>
-            </li>
-            <li>
                 <a href="{{ route('orders.index') }}">
                     <span class="icon"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i></span>
                     <span class="title">Objednávky</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('tables.index') }}">
+                    <span class="icon"><i class="fas fa-user-friends" aria-hidden="true"></i></span>
+                    <span class="title">Obsadenosť</span>
                 </a>
             </li>
             <li>

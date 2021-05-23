@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Response;
 
 class OrderController extends Controller
 {
@@ -163,6 +164,15 @@ class OrderController extends Controller
         $this->updateTables();
 
         return back();
+    }
+
+    /**
+     * Get order bill
+     */
+    public function getBill(Order $order)
+    {
+        $view = view('orders.bill', compact('order'))->render();
+        return $view;
     }
 
     /**

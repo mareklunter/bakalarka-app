@@ -40803,6 +40803,26 @@ $('.overlay').on('click', function () {
   toggle.classList.remove('active');
   overlay.classList.remove('active');
 });
+$('.getBill').on('click', function (event) {
+  var href = $(this).attr('href');
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  event.preventDefault();
+  $.ajax({
+    type: 'GET',
+    url: href,
+    success: function success(data) {
+      console.log(data);
+      $('#modal-bill').html(data);
+    },
+    error: function error(data) {
+      console.log(data);
+    }
+  });
+});
 
 /***/ }),
 

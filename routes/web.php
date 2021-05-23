@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 // auth
 Auth::routes();
 
-Route::middleware(['auth'])->group(function() {  
+Route::middleware(['auth'])->group(function () {
     //user
     Route::resource('users', 'UserController');
 
-    Route::resource('orders', 'OrderController')->only([ 
-        'create', 'store', 'edit', 'update', 'destroy', 
+    Route::resource('orders', 'OrderController')->only([
+        'create', 'store', 'edit', 'update', 'destroy',
     ]);
     Route::get('/orders/{timePeriod?}', 'OrderController@index')->name('orders.index');
     Route::get('orders/{order}/pay', 'OrderController@pay')->name('orders.pay');
@@ -30,9 +30,7 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('products', 'ProductController');
     Route::resource('tables', 'TableController');
     Route::resource('workPositions', 'WorkPositionController');
-    Route::resource('employees', 'EmployeeController')->only([
-        'index', 'create', 'store', 'edit', 'update', 'destroy'
-    ]);
+    Route::resource('employees', 'EmployeeController');
 
     Route::resource('shifts', 'ShiftController')->only([
         'store', 'destroy'
@@ -46,7 +44,9 @@ Route::middleware(['auth'])->group(function() {
     //charts
     Route::get('/salesChartUpdate/{timePeriod?}', 'ChartController@salesChartUpdate')->name('salesChartUpdate');
     Route::get('/ordersChartUpdate/{timePeriod?}', 'ChartController@ordersChartUpdate')->name('ordersChartUpdate');
+
+    Route::get('/orders/{order}/getBill', 'OrderController@getBill')->name('orders.bill');
 });
 
- //verification
- Route::get('/verify/{code}', 'Auth\RegisterController@verifyUser')->name('verify.user');
+//verification
+Route::get('/verify/{code}', 'Auth\RegisterController@verifyUser')->name('verify.user');

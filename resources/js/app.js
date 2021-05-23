@@ -5,13 +5,13 @@ require('bootstrap-select'); //live search for selects - npm-modules
 // https://www.cssscript.com/event-calendar-color/
 import Calendar from 'color-calendar';
 
-if ( $('#color-calendar').length > 0 ) {
+if ($('#color-calendar').length > 0) {
     new Calendar({
         id: '#color-calendar',
-    
+
         // short | long-lower | long-upper
         weekdayDisplayType: 'long-lower',
-    
+
         // short | long
         monthDisplayType: 'long',
         // 0 (Sun)
@@ -225,3 +225,27 @@ $('.overlay').on('click', function () {
     overlay.classList.remove('active');
 });
 
+
+$('.getBill').on('click', function (event) {
+    var href = $(this).attr('href');
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    event.preventDefault();
+
+    $.ajax({
+        type: 'GET',
+        url: href,
+        success: function (data) {
+            console.log(data);
+            $('#modal-bill').html(data);
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+});

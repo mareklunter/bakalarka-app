@@ -1037,6 +1037,14 @@ fieldset {
   min-width: 80px;
 }
 
+#modal-bill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+
 .chart-box {
   margin-bottom: 50px;
   font-size: 14px;
