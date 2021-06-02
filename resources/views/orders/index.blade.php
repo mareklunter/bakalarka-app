@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <h1>Objednávky</h1>
+    <h1 class="page-header">Objednávky</h1>
 
     <div class="table-responsive">
 
@@ -79,18 +79,35 @@
                                 <p>Žiaden stôl</p>
                             @endif
 
-                            @foreach ($order->products()->withTrashed()->get() as $product)
-                                <p>{{ $product->name }}: {{ $product->price }}€</p>
+                            <?php $order_items = array_count_values($order->products()->withTrashed()->get()->pluck('id')->toArray()); ?>
+                            @foreach ($order_items as $product_id => $amount)
+                                <p>
+                                    {{ $amount }}x 
+                                    {{ $order->products()->withTrashed()->find($product_id)->name }} = 
+                                    {{ $order->products()->withTrashed()->find($product_id)->price * $amount }}€
+                                </p>
                             @endforeach
                         </td>
                     </tr>
                 @endforeach
+                        
+                    
             </tbody>
         </table>
     </div>
 
     <div id="modal-bill" class="box box-big">
+        <div class="float-right">
+            <a href="#" class="btn btn-sm btn-light" id="close-modal"><i class="fa fa-times" aria-hidden="true"></i></a>
+        </div>
 
+        <div class="border-bottom">
+            <h4>Zaplatenie objednávky</h4>
+        </div>
+
+        <div id="modal-content">
+            content
+        </div>
     </div>
 
     <div class="d-flex flex-column flex-md-row align-items-center justify-content-md-between" id="periodButtons">

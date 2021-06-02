@@ -3,7 +3,7 @@
 
 @section('content')
     
-    <h1>Štatistiky</h1>
+    <h1 class="page-header">Štatistiky</h1>
     
     <div class="row justify-content-center" id="charts-wrapper">
         <div class="chart-box col-11 col-lg-5">

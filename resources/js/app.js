@@ -217,18 +217,19 @@ $('#showUserInfoEdit').on('click', function (event) {
 
 //sidebar - when sidebar is expanded and main content is clicked - hide sidebar
 $('.overlay').on('click', function () {
-    let overlay = document.querySelector('.overlay');
-    let navigation = document.querySelector('.navigation');
-    let toggle = document.querySelector('.toggle');
-    navigation.classList.remove('active');
-    toggle.classList.remove('active');
-    overlay.classList.remove('active');
+    $('.navigation').removeClass('active');
+    $('.toggle').removeClass('active');
+    $('.overlay').removeClass('active');
+    $('.overlay').removeClass('active');
+
+    hideBill();
 });
 
 
+//bill - modal window
 $('.getBill').on('click', function (event) {
     var href = $(this).attr('href');
-
+    
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -241,11 +242,26 @@ $('.getBill').on('click', function (event) {
         type: 'GET',
         url: href,
         success: function (data) {
-            console.log(data);
-            $('#modal-bill').html(data);
+            $('#modal-content').html(data);
+            $('#modal-bill').show();
+            $('.overlay').addClass('active');
+            $('.toggle').css('pointer-events','none');
         },
         error: function (data) {
             console.log(data);
         }
     });
 });
+
+
+$('#close-modal').on('click', function(){
+    hideBill();
+})
+
+function hideBill() {
+    $('#modal-bill').hide();
+    $('#modal-content').html('');
+    $('.overlay').removeClass('active');
+    $('.toggle').css('pointer-events','auto');
+}
+

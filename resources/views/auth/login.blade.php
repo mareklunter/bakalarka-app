@@ -4,7 +4,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-
                 <div class="flash-massage">
                     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
                         @if (Session::has('alert-' . $msg))
@@ -12,7 +11,6 @@
                         @endif
                     @endforeach
                 </div>
-    
 
                 <div class="card">
                     <div class="card-header text-center">{{ __('Prihlásenie') }}</div>
@@ -53,7 +51,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember"
@@ -64,7 +62,7 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
@@ -85,4 +83,5 @@
             </div>
         </div>
     </div>
+
 @endsection

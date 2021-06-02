@@ -13,11 +13,12 @@
         </div>
     @endif
 
-    <div class="text-left mb-4">
+    <div class="float-left">
         <a href="{{ route('employees.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Späť</a>
     </div>
 
-    <h1>Pracovné pozície</h1>
+    <h1 class="page-header mb-4">Pracovné pozície</h1>
+
 
     <div class="row justify-content-around">
         {{-- ALL POSITIONS --}}

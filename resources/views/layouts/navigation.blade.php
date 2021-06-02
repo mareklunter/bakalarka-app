@@ -37,9 +37,9 @@
 @auth
     <nav class="navbar navbar-light bg-white shadow-sm">
         <div class="header-logo">
-            <a class="navbar-brand" href="{{ url('/') }}">
+            {{-- <a class="navbar-brand" href="{{ url('/') }}">
                 {{ Auth::user()->name }}
-            </a>
+            </a> --}}
         </div>
     </nav>
 @endauth

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Menu</h1>
+    <h1 class="page-header">Ponuka</h1>
 
     <div class="table-responsive">
         <table class="table table-striped table-sm table-bordered">

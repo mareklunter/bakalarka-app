@@ -40796,13 +40796,13 @@ $('#showUserInfoEdit').on('click', function (event) {
 }); //sidebar - when sidebar is expanded and main content is clicked - hide sidebar
 
 $('.overlay').on('click', function () {
-  var overlay = document.querySelector('.overlay');
-  var navigation = document.querySelector('.navigation');
-  var toggle = document.querySelector('.toggle');
-  navigation.classList.remove('active');
-  toggle.classList.remove('active');
-  overlay.classList.remove('active');
-});
+  $('.navigation').removeClass('active');
+  $('.toggle').removeClass('active');
+  $('.overlay').removeClass('active');
+  $('.overlay').removeClass('active');
+  hideBill();
+}); //bill - modal window
+
 $('.getBill').on('click', function (event) {
   var href = $(this).attr('href');
   $.ajaxSetup({
@@ -40815,14 +40815,26 @@ $('.getBill').on('click', function (event) {
     type: 'GET',
     url: href,
     success: function success(data) {
-      console.log(data);
-      $('#modal-bill').html(data);
+      $('#modal-content').html(data);
+      $('#modal-bill').show();
+      $('.overlay').addClass('active');
+      $('.toggle').css('pointer-events', 'none');
     },
     error: function error(data) {
       console.log(data);
     }
   });
 });
+$('#close-modal').on('click', function () {
+  hideBill();
+});
+
+function hideBill() {
+  $('#modal-bill').hide();
+  $('#modal-content').html('');
+  $('.overlay').removeClass('active');
+  $('.toggle').css('pointer-events', 'auto');
+}
 
 /***/ }),
 

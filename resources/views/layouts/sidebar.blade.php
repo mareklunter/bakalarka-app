@@ -1,6 +1,7 @@
 <div class="sidebar">
     <div class="navigation">
         <ul>
+            <span class="sidebar-header">Restaurant system</span>
             <li>
                 <a href="{{ route('dashboard') }}">
                     <span class="icon"><i class="fa fa-list-alt" aria-hidden="true"></i></span>
@@ -63,7 +64,7 @@
         </ul>
     </div>
     
-    <div class="toggle" onclick="toggleMenu()"></div>
+    <div class="toggle" onclick="toggleMenu()" aria-disabled="true" disabled></div>
 </div>
 
 <div class="overlay"></div>

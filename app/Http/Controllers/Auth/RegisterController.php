@@ -61,39 +61,6 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    // protected function create(array $data)
-    // {
-        // $user = User::create([
-        //     'name'      => $data['name'],
-        //     'address'   => $data['address'],
-        //     'email'     => $data['email'],
-        //     'phone'     => $data['phone'],
-        //     'password'  => Hash::make($data['password']),
-        //     'verification_code' => sha1(time())
-        // ]);
-
-    //     $user = new User();
-    //     $user->name = $data['name'];
-    //     $user->email = $data['email'];
-    //     $user->password = Hash::make($data['password']);
-    //     $user->phone = $data['phone'];
-    //     $user->address = $data['address'];
-    //     $user->verification_code = sha1(time());
-    //     $user->save();
-
-    //     if($user != null){
-    //         MailController::sendSignupEmail($user->name, $user->email, $user->verification_code);
-    //         return redirect()->back()->with(session()->flash('alert-success', 'Your account has been created. Please check email for verification link.'));
-    //     }
-
-    //     return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong!'));
-    // }
 
     public function register(Request $request)
     {

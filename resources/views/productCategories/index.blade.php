@@ -14,10 +14,10 @@
     @endif
 
     {{-- ALL CATEGORIES --}}
-    <div class="text-left mb-4">
+    <div class="float-left">
         <a href="{{ route('products.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Späť</a>
     </div>
-    <h1>Kategórie produktov</h1>
+    <h1 class="page-header mb-4">Kategórie produktov</h1>
 
     <div class="row justify-content-around">
         <table class="table table-striped table-sm table-bordered col-11 col-md-7 order-md-last">

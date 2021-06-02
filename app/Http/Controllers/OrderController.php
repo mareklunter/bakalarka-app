@@ -171,7 +171,9 @@ class OrderController extends Controller
      */
     public function getBill(Order $order)
     {
-        $view = view('orders.bill', compact('order'))->render();
+        $order_items = array_count_values($order->products()->withTrashed()->get()->pluck('id')->toArray()); 
+
+        $view = view('orders.bill', compact('order', 'order_items'))->render();
         return $view;
     }
 

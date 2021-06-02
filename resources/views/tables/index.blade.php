@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <h1>Obsadenosť</h1>
+    <h1 class="page-header">Obsadenosť</h1>
 
     @if ($tables->isEmpty())
         <div class="box box-big col col-md-10 py-4 px-2 row justify-content-center">
@@ -64,7 +64,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Počet miest</span>
                 </div>
-                <input type="number" min="1" class="form-control" name="seats" id="seats" required>
+                <input type="number" min="1" value="1" class="form-control" name="seats" id="seats" required>
             </div>
 
             <div class="input-group mb-4">

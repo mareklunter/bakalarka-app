@@ -12,9 +12,11 @@
         </div>
     @endif
 
-    <div class="text-left mb-4">
+    <div class="float-left">
         <a href="{{ route('employees.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Späť</a>
     </div>
+
+    <h1 class="page-header mb-4">Smeny</h1>
 
     <div class="d-flex justify-content-end mb-2">
         <div class="btn-group" role="group" id="time-period">
