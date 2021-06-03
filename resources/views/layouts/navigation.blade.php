@@ -1,5 +1,5 @@
 @guest
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm mb-5">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -36,10 +36,5 @@
 
 @auth
     <nav class="navbar navbar-light bg-white shadow-sm">
-        <div class="header-logo">
-            {{-- <a class="navbar-brand" href="{{ url('/') }}">
-                {{ Auth::user()->name }}
-            </a> --}}
-        </div>
     </nav>
 @endauth

@@ -91,7 +91,6 @@
                     </tr>
                 @endforeach
                         
-                    
             </tbody>
         </table>
     </div>
@@ -106,7 +105,6 @@
         </div>
 
         <div id="modal-content">
-            content
         </div>
     </div>
 

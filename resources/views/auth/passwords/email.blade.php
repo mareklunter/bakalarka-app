@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-center">{{ __('Reset Password') }}</div>
+                <div class="card-header text-center">{{ __('Obnova hesla') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -32,8 +32,8 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-6 offset-md-4 mt-3">
+                                <button type="submit" class="btn btn-light">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>

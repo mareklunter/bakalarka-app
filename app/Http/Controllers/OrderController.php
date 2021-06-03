@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Response;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -176,6 +176,21 @@ class OrderController extends Controller
         $view = view('orders.bill', compact('order', 'order_items'))->render();
         return $view;
     }
+
+    
+    /**
+     * Exports exam into pdf
+     */
+    public function billPdf(Order $order)
+    {
+        $order_items = array_count_values($order->products()->withTrashed()->get()->pluck('id')->toArray()); 
+
+        // share data to view
+        $pdf = PDF::loadView("orders.bill_pdf", compact('order', 'order_items'));
+
+        return $pdf->download("bill.pdf");
+    }
+
 
     /**
      * Change order status

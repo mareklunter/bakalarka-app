@@ -26,6 +26,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders/{timePeriod?}', 'OrderController@index')->name('orders.index');
     Route::get('orders/{order}/pay', 'OrderController@pay')->name('orders.pay');
     Route::get('/orders/sortStatus', 'OrderController@sortStatus')->name('orders.sortStatus');
+    Route::get('/orders/{order}/billPdf', 'OrderController@billPdf')->name('orders.billPdf');
+    Route::get('/orders/{order}/getBill', 'OrderController@getBill')->name('orders.bill');
     Route::resource('productCategories', 'ProductCategoryController');
     Route::resource('products', 'ProductController');
     Route::resource('tables', 'TableController');
@@ -45,7 +47,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/salesChartUpdate/{timePeriod?}', 'ChartController@salesChartUpdate')->name('salesChartUpdate');
     Route::get('/ordersChartUpdate/{timePeriod?}', 'ChartController@ordersChartUpdate')->name('ordersChartUpdate');
 
-    Route::get('/orders/{order}/getBill', 'OrderController@getBill')->name('orders.bill');
 });
 
 //verification

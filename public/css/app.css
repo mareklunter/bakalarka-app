@@ -1199,10 +1199,33 @@ fieldset {
 
 .card {
   text-align: left;
+  background-color: #0b407c;
+  color: whitesmoke;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.navbar .header-logo {
-  height: 40px;
+.card .forgotten-password {
+  margin-left: 10px;
+  transition: 0.3s all;
+}
+
+.card .forgotten-password:hover {
+  text-decoration: none;
+  color: #46769b;
+}
+
+.card .card-header {
+  background-color: #023269;
+  font-size: 1.25rem;
+}
+
+.card .card-body {
+  padding: 3rem 1.25rem;
+}
+
+.navbar {
+  height: 56px;
 }
 
 #color-calendar {

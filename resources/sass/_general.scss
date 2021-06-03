@@ -303,13 +303,32 @@ fieldset {
 //login-register card
 .card {
     text-align: left;
+    background-color: rgb(11, 64, 124);
+    color: whitesmoke;
+    width: 80%;
+    margin: 0 auto;
+
+    .forgotten-password {
+        margin-left: 10px;
+        transition: .3s all;
+    }
+    .forgotten-password:hover {
+        text-decoration: none;
+        color: #46769b;
+    }
+
+    .card-header {
+        background-color: rgb(2, 50, 105);
+        font-size: 1.25rem;
+    }
+
+    .card-body {
+        padding: 3rem 1.25rem;
+    }
 }
 
 .navbar {
-    //auth header
-    .header-logo {
-        height: 40px;
-    }
+    height: 56px;
 }
 
 

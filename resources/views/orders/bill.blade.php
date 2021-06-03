@@ -34,7 +34,7 @@
 </table>
 
 <div class="btn-group mt-3">
-    <a href="#" class="btn btn-dark">Export PDF</a>
+    <a href="{{ route('orders.billPdf', $order) }}" class="btn btn-dark">Export PDF</a>
 
     @if ($order->paid)
         <a href="{{ route('orders.pay', $order) }}" class="btn btn-primary">Zrušiť zaplatenie</a>
