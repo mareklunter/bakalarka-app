@@ -236,6 +236,10 @@ fieldset {
     }
 }
 
+//live-select
+.bootstrap-select.bs-container .dropdown-menu {
+    z-index: 15 !important;
+}
 
 //dashboard
 .dashboard-box {

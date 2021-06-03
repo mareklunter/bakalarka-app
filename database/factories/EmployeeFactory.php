@@ -7,10 +7,11 @@ use Faker\Generator as Faker;
 
 $factory->define(Employee::class, function (Faker $faker) {
     return [
-        'user_id' => $faker->numberBetween(1,6),
-        'firstName' => $faker->firstName,
-        'lastName' => $faker->lastName,
-        'work_position_id' => 1,
-        'salary' => $faker->numberBetween(600,1200),
+        'user_id'           => 1,
+        'firstName'         => $faker->firstName,
+        'lastName'          => $faker->lastName,
+        'work_position_id'  => $faker->numberBetween(1,4),
+        'phone'             => $faker->e164PhoneNumber,
+        'employed_since'    => $faker->date($format = 'Y-m-d', $max = 'now'),
     ]; 
 });

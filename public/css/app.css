@@ -1137,6 +1137,10 @@ fieldset {
   padding: clamp(.2rem, 1vw, .3rem) clamp(.3rem, 1vw, .5rem);
 }
 
+.bootstrap-select.bs-container .dropdown-menu {
+  z-index: 15 !important;
+}
+
 .dashboard-box {
   position: relative;
   text-align: left;

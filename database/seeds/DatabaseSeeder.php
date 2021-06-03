@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(UserSeeder::class);
         
         // namiesto toho vyssie mozeme spravit takyto for-cyklus 
-        factory(App\User::class, 5)->create()->each(function ($user) {
+        factory(App\User::class, 1)->create()->each(function ($user) {
             for ($i=0; $i < 5; $i++) { 
                 $user->productCategories()->save(factory(App\ProductCategory::class)->make());
                 $user->workPositions()->save(factory(App\WorkPosition::class)->make());
